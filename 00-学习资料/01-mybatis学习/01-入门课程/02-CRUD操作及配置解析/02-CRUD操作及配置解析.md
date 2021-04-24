@@ -1,6 +1,6 @@
 ## 狂神说MyBatis02：CRUD操作及配置解析
 
-> 狂神说MyBatis系列连载课程，通俗易懂，基于MyBatis3.5.2版本，欢迎各位狂粉转发关注学习，视频同步文档。未经作者授权，禁止转载
+> 狂神说MyBatis系列连载课程，通俗易懂，基于MyBatis3.5.2版本，欢迎各位狂粉转发关注学习，视频同步文档。
 
 CRUD操作
 
@@ -19,10 +19,8 @@ CRUD操作
 > select
 
 - select标签是mybatis中最常用的标签之一
-
 - select语句有很多属性可以详细配置每一条SQL语句
-
-- - SQL语句返回值类型。【完整的类名或者别名】
+- SQL语句返回值类型。【完整的类名或者别名】
 - 传入SQL语句的参数类型 。【万能的Map，可以多尝试使用】
 - 命名空间中唯一的标识符
 - 接口中的方法名与映射文件中的SQL语句ID 一一对应
@@ -74,7 +72,7 @@ public void tsetSelectUserById() {
 
 ```
 //通过密码和名字查询用户
-User selectUserByNP(@Param("username") String username,@Param("pwd") String pwd);
+User selectUserByNP(@Param("username") String username, @Param("pwd") String pwd);
 
 /*
    <select id="selectUserByNP" resultType="com.kuang.pojo.User">
