@@ -41,8 +41,6 @@
 1. 添加缩写: add Abbreviation
 
 
-
-
 #### IDEA个人设置
 
 1. 外观或行为: 
@@ -60,3 +58,5 @@ Editor -> Font -> Consolas(Size 14, Line heignt: 12)
 5. 删除一行:
    Editor Actions -> Delete Line(Ctrl + Y -> Ctrl + D)
 
+6. 在资源管理器中显示:
+   Show in Explorer(Ctrl + Alt + E)
