@@ -1,0 +1,44 @@
+0. 业务背景: 工作中关于分组函数和去重的场景
+
+1. 关于去重
+	group by
+	distinct
+
+2.
+	一、语法
+	select 分组函数，分组后的字段
+	from 表
+	【where 筛选条件】
+	group by 分组的字段
+	【having 分组后的筛选】
+	【order by 排序列表】
+
+	二、特点
+
+				使用关键字		筛选的表	位置
+	分组前筛选	where			原始表		group by的前面
+	分组后筛选	having		分组后的结果	group by 的后面
+
+4. group by 介绍:
+博客学习: https://blog.csdn.net/mifffy_java/article/details/100141324
+
+    4.1 数据准备:
+    CREATE TABLE student_score (
+      number INT(11) NOT NULL,
+      name VARCHAR(30) NOT NULL,
+      subject VARCHAR(30) NOT NULL,
+      score TINYINT(4) DEFAULT NULL,
+      PRIMARY KEY (number,subject)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+    insert IGNORE  into student_score (`number`, `name`, `subject`, `score`) values
+    ("20180101", "杜子腾", "母猪的产后护理", "78"),
+    ("20180101", "杜子腾", "论萨达姆的战争准备", "88"),
+    ("20180102", "杜琦燕", "论萨达姆的战争准备", "100"),
+    ("20180103", "范统", "母猪的产后护理", "59"),
+    ("20180103", "范统", "论萨达姆的战争准备", "61"),
+    ("20180104", "史珍香", "母猪的产后护理", "55"),
+    ("20180104", "史珍香", "论萨达姆的战争准备", "46");
+
+5. sql_mode的介绍:
+博客学习: https://blog.csdn.net/lky_for_lucky/article/details/110222051

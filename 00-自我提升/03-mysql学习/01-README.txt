@@ -1,6 +1,6 @@
 学习进度: 129
 
-在线视频:https://www.bilibili.com/video/BV12b411K7Zu?p=243
+在线视频: https://www.bilibili.com/video/BV12b411K7Zu?p=243
 
 本地资源: F:\BaiduNetdiskDownload\MySQL核心技术
 

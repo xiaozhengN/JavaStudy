@@ -3,9 +3,7 @@ package com.atguigu.exer;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-
 import org.junit.Test;
-
 import com.atguigu.java8.Employee;
 import com.atguigu.java8.Employee.Status;
 

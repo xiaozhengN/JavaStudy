@@ -1,10 +1,10 @@
 package com.atguigu.java8;
 
-public class SubClass /*extends MyClass*/ implements MyFun, MyInterface{
+public class SubClass /*extends MyClass*/ implements com.atguigu.java8.MyFun, com.atguigu.java8.MyInterface {
 
 	@Override
 	public String getName() {
-		return MyInterface.super.getName();
+		return com.atguigu.java8.MyInterface.super.getName();
 	}
 
 }
