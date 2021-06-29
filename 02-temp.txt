@@ -1,0 +1,91 @@
+var host_list = [
+  'github.com',
+  'github.global.ssl.fastly.net',
+  'gist.github.com',
+  'assets-cdn.github.com',
+  'raw.githubusercontent.com',
+  'gist.githubusercontent.com',
+  'cloud.githubusercontent.com',
+  'camo.githubusercontent.com',
+  'avatars0.githubusercontent.com',
+  'avatars1.githubusercontent.com',
+  'avatars2.githubusercontent.com',
+  'avatars3.githubusercontent.com',
+  'avatars4.githubusercontent.com',
+  'avatars5.githubusercontent.com',
+  'avatars6.githubusercontent.com',
+  'avatars7.githubusercontent.com',
+  'avatars8.githubusercontent.com',
+]
+
+var host_list = [
+'github.githubassets.com',
+'central.github.com',
+'desktop.githubusercontent.com',
+'assets-cdn.github.com',
+'camo.githubusercontent.com',
+'github.map.fastly.net',
+'github.global.ssl.fastly.net',
+'gist.github.com',
+'github.io',
+'github.com',
+'api.github.com',
+'raw.githubusercontent.com',
+'user-images.githubusercontent.com',
+'favicons.githubusercontent.com',
+'avatars5.githubusercontent.com',
+'avatars4.githubusercontent.com',
+'avatars3.githubusercontent.com',
+'avatars2.githubusercontent.com',
+'avatars1.githubusercontent.com',
+'avatars0.githubusercontent.com',
+'avatars.githubusercontent.com',
+'codeload.github.com',
+'github-cloud.s3.amazonaws.com',
+'github-com.s3.amazonaws.com',
+'github-production-release-asset-2e65be.s3.amazonaws.com',
+'github-production-user-asset-6210df.s3.amazonaws.com',
+'github-production-repository-file-5c1aeb.s3.amazonaws.com',
+'githubstatus.com',
+'github.community',
+'media.githubusercontent.com'
+]
+function rec (wq, fq=[]) {
+  if (wq.length)  {
+    $.ajax({
+      url: `https://myssl.com/api/v1/tools/dns_query`,
+      type: 'GET',
+      data: {
+        qtype: 1,
+        host: wq[0],
+        qmode: -1,
+      }
+    }).then(res => {
+      try {
+        fq.push([wq[0], res.data['86'][0]['answer']['records'][0].value])
+        wq.splice(0, 1)
+        console.log(`%c[当前进度：${parseInt(100 * (fq.length) / (fq.length + wq.length))}%]`, 'background-color: #67c23a; color: #ffffff;')
+      } catch (e) {
+        fq.push([wq[0], 'ERROR'])
+        wq.splice(0, 1)
+        console.log(`%c[当前进度：${parseInt(100 * (fq.length) / (fq.length + wq.length))}%]`, 'background-color: #f56c6c; color: #ffffff;')
+      } finally {
+        rec(wq, fq)
+      }
+    })
+  } else {
+    function downloadText (text) {
+      var a = document.createElement('a')
+      a.download = 'content.txt'
+      a.style.display = 'none'
+      var blob = new Blob([text])
+      a.href = URL.createObjectURL(blob)
+      document.body.appendChild(a)
+      a.click()
+    }
+    var content = '\n# GitHub Start\n' + fq.map(kv => kv[1] + ' ' + kv[0]).join('\n') + '\n# GitHub End\n'
+    downloadText(content)
+    console.log(`%c${content}`, 'background-color: #fffbe5; color: #614107;')
+  }
+}
+rec(host_list)
