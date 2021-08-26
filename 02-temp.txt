@@ -1,24 +1,6 @@
 地址: https://myssl.com/dns_check.html
 
-var host_list = [
-  'github.com',
-  'github.global.ssl.fastly.net',
-  'gist.github.com',
-  'assets-cdn.github.com',
-  'raw.githubusercontent.com',
-  'gist.githubusercontent.com',
-  'cloud.githubusercontent.com',
-  'camo.githubusercontent.com',
-  'avatars0.githubusercontent.com',
-  'avatars1.githubusercontent.com',
-  'avatars2.githubusercontent.com',
-  'avatars3.githubusercontent.com',
-  'avatars4.githubusercontent.com',
-  'avatars5.githubusercontent.com',
-  'avatars6.githubusercontent.com',
-  'avatars7.githubusercontent.com',
-  'avatars8.githubusercontent.com',
-]
+https://myssl.com/api/v1/tools/dns_query?qtype=1&host=central.github.com&qmode=-1
 
 var host_list = [
 'github.githubassets.com',
