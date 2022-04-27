@@ -1,17 +1,28 @@
 // ==UserScript==
 // @name         🔥持续更新🔥 CSDN广告完全过滤、人性化脚本优化：🆕 不用再登录了！让你体验令人惊喜的崭新CSDN。
 // @namespace    https://github.com/adlered
-// @version      4.0.2
-// @description  ⚡️全新4.0版本！拥有数项独家功能的最强CSDN脚本，不服比一比⚡️|🕶无需登录CSDN，获得比会员更佳的体验|🖥分辨率自适配，分屏不用滚动|💾超级预优化|🔖独家超级免会员|🏷独家原创文章免登录展开|🔌独家推荐内容自由开关|📠独家免登录复制|🔗独家防外链重定向|📝独家论坛未登录自动展开文章、评论|🌵全面净化|📈沉浸阅读|🧴净化剪贴板|📕作者信息文章顶部展示
+// @version      4.1.0
+// @description  ⚡️全新4.0版本！拥有数项独家功能的最强CSDN脚本，不服比一比⚡️|🕶无需登录CSDN，获得比会员更佳的体验|🖥自定义背景图，分辨率自适配，分屏不用滚动|💾超级预优化|🔖独家超级免会员|🏷独家原创文章免登录展开|🔌独家推荐内容自由开关|📠独家免登录复制|🔗独家防外链重定向|📝独家论坛未登录自动展开文章、评论|🌵全面净化|📈沉浸阅读|🧴净化剪贴板|📕作者信息文章顶部展示
 // @author       Adler
 // @connect      www.csdn.net
 // @include      *://*.csdn.net/*
-// @require      https://cdn.jsdelivr.net/npm/jquery.cookie/jquery.cookie.js
-// @require      https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js
-// @require      https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js
+// @require      https://cdn.bootcdn.net/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js
+// @require      https://cdn.bootcdn.net/ajax/libs/nprogress/0.2.0/nprogress.js
+// @require      https://cdn.bootcdn.net/ajax/libs/clipboard.js/2.0.8/clipboard.min.js
 // @supportURL   https://github.com/adlered/CSDNGreener/issues/new?assignees=adlered&labels=help+wanted&template=ISSUE_TEMPLATE.md&title=
 // @contributionURL https://doc.stackoverflow.wiki/web/#/21?page_id=138
 // @grant        GM_addStyle
+// @grant        GM_setValue
+// @grant        GM_getValue
+// @antifeature  tracking ============================================>>> 说明：我们仅会在CSDN页面收集您使用CSDNGreener的情况，帮助我们了解CSDNGreener的用户数量。这个操作仅会收集您的IP地址信息，不包含您鼠标、键盘点击在内的所有操作，没有任何安全风险，不会产生性能损耗。为了保护您的知情权以及使用体验，特告知于您。代码开源可审计，CSDNGreener老牌脚本，有口皆碑。请您放心安装。 <<<============================================
+// @note         22-01-18 4.1.0 代码折叠适配
+// @note         22-01-05 4.0.9 更新广告
+// @note         21-12-12 4.0.8 屏蔽学生认证
+// @note         21-10-21 4.0.7 屏蔽红包雨
+// @note         21-09-24 4.0.6 修复登录弹窗无法彻底去除的问题
+// @note         21-09-20 4.0.5 增加自定义背景功能
+// @note         21-09-13 4.0.4 增加一个没有收钱的广告（在设置里，不影响体验）
+// @note         21-09-01 4.0.3 增加用户使用情况统计模块
 // @note         21-08-25 4.0.2 修复右侧置顶栏按钮消失的问题
 // @note         21-08-21 4.0.1 去除右侧悬浮栏，优化脚本
 // @note         21-08-20 4.0.0 全新4.0发布！UI美化，代码优化，兼容Firefox，更多排版模式
@@ -137,7 +148,7 @@
 // @note         19-03-01 1.0.1 修复了排版问题, 优化了代码结构
 // @note         19-02-26 1.0.0 初版发布
 // ==/UserScript==
-var version = "4.0.2";
+var version = "4.1.0";
 var currentURL = window.location.href;
 if (currentURL.indexOf("?") !== -1) {
     currentURL = currentURL.substring(0, currentURL.indexOf("?"));
@@ -146,7 +157,6 @@ var list;
 var windowTop = 0;
 var startTimeMilli = Date.now();
 var stopTimeMilli = 0;
-
 // 配置控制类
 class Config {
     get(key, value) {
@@ -157,12 +167,19 @@ class Config {
             return value;
         }
         console.debug("Read key: " + key + " : " + cookie);
-        if (cookie === "true") {
-            return true;
+        if (cookie === "true") { return true; }
+        if (cookie === "false") { return false; }
+        return cookie;
+    }
+
+    getS(key, value) {
+        var cookie = $.cookie(key);
+        if (cookie == undefined) {
+            new Config().set(key, value);
+            console.debug("Renew key: " + key + " : " + value);
+            return value;
         }
-        if (cookie === "false") {
-            return false;
-        }
+        console.debug("Read key: " + key + " : " + cookie);
         return cookie;
     }
 
@@ -204,10 +221,8 @@ class Config {
         });
     }
 }
-
 var config = new Config();
 var progress = 0;
-
 class Progress {
     init() {
         progress = 0;
@@ -235,9 +250,9 @@ class Progress {
         progress = 100;
         NProgress.done();
         $("#greenerProgress").html(protect_svg + ' CSDNGreener 正在守护您的浏览体验');
-        setTimeout(function () {
+        setTimeout(function() {
             $("#greenerProgress").fadeOut(500);
-            setTimeout(function () {
+            setTimeout(function() {
                 $(".toolbar-search").fadeIn(500);
                 if (!isFirefox()) {
                     // 提示
@@ -251,7 +266,6 @@ class Progress {
         }, 1500);
     }
 }
-
 var progressor = new Progress();
 
 // 自定义 CSS
@@ -287,231 +301,131 @@ var settings_svg = '<svg t="1629433360462" class="icon" viewBox="0 0 1024 1024" 
 var protect_svg = '<svg t="1629560538805" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3212" width="200" height="200"><path d="M800.3 205.1L534.8 116c-16-5.4-33.3-5.3-49.2 0.2l-264.5 92.3c-29.3 10-49 37.5-49.1 68.4l1.7 265.4c0.7 81 31.1 158.9 85.6 218.9 25 27.7 56.9 51.5 97.8 72.7l144 74.6c9 4.7 19.7 4.6 28.7-0.2L672.5 832c40.4-21.6 72.2-45.7 96.9-73.8 53.6-60.6 83-138.9 82.6-219.8l-1.7-265.6c-0.5-30.9-20.5-58.1-50-67.7z" fill="#07C160" p-id="3213"></path><path d="M474.1 652c-7.1 0-13.8-2.8-18.9-7.8l-151-151.1c-10.4-10.4-10.4-27.4 0-37.8s27.4-10.4 37.8 0l132.1 132.2 207.7-207.7c10.4-10.4 27.4-10.4 37.8 0 10.4 10.4 10.4 27.4 0 37.8L493 644.2c-5 5-11.8 7.8-18.9 7.8z" fill="#FFFFFF" p-id="3214"></path></svg>';
 
 // jquery.showtips.js
-(function (jQuery) {
-    jQuery.fn.showTips = function (options, elem) {
+(function(jQuery) {
+    jQuery.fn.showTips = function(options,elem){
         var config = {
-            skin: "trips",
-            content: $(this).attr("tips") || "弹出类型的气泡提示！",  //气泡提示内容里面可以是HTML，默认显示自定义的提示内容
-            width: "auto",  //默认为auto，可以写具体尺寸如：200
-            alignTo: ["right", "center"],  //箭头方向
-            color: ["rgb(247, 206, 57)", "#FFFEF4"],  //这里是提示层的风格，第一个参数为提示边框颜色，第二个参数为提示背景颜色
-            type: "html",   //显示内容类型
-            trigger: "click",    //默认为点击显示，show为初始化就显示，hover为经过显示，focus焦点显示，mouse跟随鼠标显示隐藏
-            spacing: 10,  //默认为箭头距离对象的尺寸
-            customid: "",  //自定义ID
-            isclose: false,   //是否显示关闭按钮
-            success: null    //成功后的回调函数
+            skin:"trips",
+            content:$(this).attr("tips")||"弹出类型的气泡提示！",  //气泡提示内容里面可以是HTML，默认显示自定义的提示内容
+            width:"auto",  //默认为auto，可以写具体尺寸如：200
+            alignTo:["right","center"],  //箭头方向
+            color:["rgb(247, 206, 57)","#FFFEF4"],  //这里是提示层的风格，第一个参数为提示边框颜色，第二个参数为提示背景颜色
+            type:"html",   //显示内容类型
+            trigger:"click",    //默认为点击显示，show为初始化就显示，hover为经过显示，focus焦点显示，mouse跟随鼠标显示隐藏
+            spacing:10,  //默认为箭头距离对象的尺寸
+            customid:"",  //自定义ID
+            isclose:false,   //是否显示关闭按钮
+            success : null    //成功后的回调函数
         };
         var opts = jQuery.extend(config, options);
-        return this.each(function () {
-            var that = jQuery(this), tipBox, tipId, selfH, selfW, conId, docW, spa = opts.spacing, skin = opts.skin;
+        return this.each(function(){
+            var that = jQuery(this),tipBox,tipId,selfH,selfW,conId,docW, spa = opts.spacing, skin=opts.skin;
             var Mathrandom = Math.floor(Math.random() * 9999999);
-            var pmr = (opts.customid == "") ? Mathrandom : opts.customid.replace(/[#.]/, "");
-            var pointer = opts.alignTo.length === 1 ? '' + opts.alignTo[0] + '' : '' + opts.alignTo[0] + '-' + opts.alignTo[1] + '';
+            var pmr = (opts.customid=="") ? Mathrandom :opts.customid.replace(/[#.]/, "");
+            var pointer=opts.alignTo.length===1 ? ''+opts.alignTo[0]+'' : ''+opts.alignTo[0]+'-'+opts.alignTo[1]+'';
 
-            if (typeof elem == 'string') {
-                if (elem == "show") {
-                    jQuery('#tip' + pmr).show();
-                    jQuery("#con" + pmr).html(opts.content);
-                    showPosition(pointer, jQuery('#tip' + pmr));
-                }
-                ;
-                if (elem == "hide") {
-                    jQuery('#tip' + pmr).hide()
-                }
-                ;
-            }
-            ;
-            if (typeof elem == '' || typeof elem == undefined) {
-                return true
-            }
-            ;
-            if (jQuery('#tip' + pmr).length == 1) {
-                return false;
-            }
-            tipBox = jQuery('<div class="' + skin + ' ' + skin + '-' + pointer + '" id="tip' + pmr + '"><i></i><em></em><div class="' + skin + 'con" id="con' + pmr + '"></div></div>').appendTo(document.body);
-            tipId = jQuery("#tip" + pmr);
-            conId = jQuery("#con" + pmr);
+            if(typeof elem == 'string') {
+                if(elem =="show"){
+                    jQuery('#tip'+pmr).show();  jQuery("#con"+pmr).html(opts.content);
+                    showPosition(pointer,jQuery('#tip'+pmr));
+                };
+                if(elem =="hide"){jQuery('#tip'+pmr).hide()};
+            };
+            if(typeof elem == '' || typeof elem == undefined){return true};
+            if(jQuery('#tip'+pmr).length==1){return false;}
+            tipBox=jQuery('<div class="'+skin+' '+skin+'-'+pointer+'" id="tip'+pmr+'"><i></i><em></em><div class="'+skin+'con" id="con'+pmr+'"></div></div>').appendTo(document.body);
+            tipId = jQuery("#tip"+pmr);
+            conId = jQuery("#con"+pmr);
 
-            var edgecolor = 'border-' + opts.alignTo[0] + '-color', tfi = tipId.find("i"), tfem = tipId.find("em"),
-                tfiem = tipId.find("i,em");
-            tipId.css({
-                'position': 'absolute',
-                border: '1px solid',
-                'border-color': opts.color[0],
-                'background-color': opts.color[1]
-            });
-            if (opts.alignTo[1] == 'center') {
-                var offpos = 50, percen = "%";
-            } else {
-                var offpos = 5, percen = "px";
-            }
-            ;
-            tfiem.css({width: 0, height: 0, content: '', 'position': 'absolute'})
-            tfi.css({border: '8px solid transparent', 'z-index': 5});
-            tfem.css({border: '7px solid transparent', 'z-index': 10});
+            var edgecolor='border-'+opts.alignTo[0]+'-color', tfi=tipId.find("i"), tfem=tipId.find("em"), tfiem=tipId.find("i,em");
+            tipId.css({'position':'absolute',border:'1px solid','border-color':opts.color[0],'background-color':opts.color[1]});
+            if(opts.alignTo[1]=='center'){ var offpos=50,percen="%"; }else{ var offpos=5,percen="px"; };
+            tfiem.css({width:0,height:0,content:'','position':'absolute'})
+            tfi.css({border:'8px solid transparent','z-index':5});
+            tfem.css({border:'7px solid transparent','z-index':10});
             switch (pointer) {
                 case 'top-center':
                 case 'bottom-center':
                 case 'top-left':
                 case 'bottom-left':
-                    var poi = "left";
-                    if (pointer == 'top-center' || pointer == 'bottom-center') {
-                        tfi.css({"margin-left": "-8px"});
-                        tfem.css({"margin-left": "-7px"});
+                    var poi="left";
+                    if(pointer=='top-center' || pointer=='bottom-center'){
+                        tfi.css({"margin-left":"-8px"});
+                        tfem.css({"margin-left":"-7px"});
                     }
                     break;
                 case 'left-center':
                 case 'right-center':
                 case 'left-top':
                 case 'right-top':
-                    var poi = "top";
-                    if (pointer == 'left-center' || pointer == 'right-center') {
-                        tfi.css({"margin-top": "-8px"});
-                        tfem.css({"margin-top": "-7px"});
+                    var poi="top";
+                    if(pointer=='left-center' || pointer=='right-center'){
+                        tfi.css({"margin-top":"-8px"});
+                        tfem.css({"margin-top":"-7px"});
                     }
                     break;
                 default:
-                    var poi = "right";
+                    var poi="right";
                     break;
-            }
-            ;
+            };
 
-            if (pointer == 'follow') {
-                tfi.css({'border-bottom-color': opts.color[0], left: '' + offpos + percen + '', bottom: '100%'});
-                tfem.css({
-                    'border-bottom-color': opts.color[1],
-                    left: '' + (offpos + (opts.alignTo[1] == 'center' ? 0 : 1)) + percen + '',
-                    bottom: '100%'
-                });
-            } else {
-                tfi.css(edgecolor, opts.color[0]).css(poi, '' + offpos + percen + '');
-                tfem.css(edgecolor, opts.color[1]).css(poi, '' + (offpos + (opts.alignTo[1] == 'center' ? 0 : 1)) + percen + '');
-                tfiem.css(opts.alignTo[0], '100%');
-            }
-            ;
+            if(pointer=='follow'){
+                tfi.css({'border-bottom-color':opts.color[0],left:''+offpos+percen+'',bottom:'100%'});
+                tfem.css({'border-bottom-color':opts.color[1],left:''+(offpos+(opts.alignTo[1]=='center'?0:1))+percen+'',bottom:'100%'});
+            }else{
+                tfi.css(edgecolor,opts.color[0]).css(poi,''+offpos+percen+'');
+                tfem.css(edgecolor,opts.color[1]).css(poi,''+(offpos+(opts.alignTo[1]=='center'?0:1))+percen+'');
+                tfiem.css(opts.alignTo[0],'100%');
+            };
 
             switch (opts.type) {
-                case 'html':
-                    conId.html(opts.content);
-                    break;
+                case 'html':conId.html(opts.content); break;
                 case 'id'  :
-                    var tempid = jQuery(opts.content), wrap = document.createElement("div");
-                    if (tempid.css("display") == "none") {
-                        tempid.css({display: "block"});
-                    }
+                    var tempid=jQuery(opts.content) ,wrap = document.createElement("div");
+                    if(tempid.css("display") == "none"){  tempid.css({display:"block"}); }
                     conId.append(tempid);
                     break;
-            }
-            ;
-            if (opts.isclose) {
-                jQuery('<span class="' + skin + 'close" id="close' + pmr + '">&times;</span>').appendTo(tipId);
-                tipId.find("#close" + pmr + "").on("click", function () {
-                    tipId.hide();
-                });
+            };
+            if(opts.isclose){
+                jQuery('<span class="'+skin+'close" id="close'+pmr+'">&times;</span>').appendTo(tipId);
+                tipId.find("#close"+pmr+"").on("click",function(){tipId.hide();});
             }
 
-            if (typeof opts.width === 'string') {
-                docW = parseInt(document.body.clientWidth * (opts.width.replace('%', '') / 100));
-                (typeof opts.width == 'auto' || typeof opts.width == '') ? tipBox.css({width: 'auto'}) : tipBox.css({width: docW});
+            if(typeof opts.width === 'string'){
+                docW = parseInt(document.body.clientWidth*(opts.width.replace('%','')/100));
+                (typeof opts.width == 'auto' || typeof opts.width == '') ? tipBox.css({width:'auto'}) : tipBox.css({width:docW});
                 tipBox.height();
-            } else {
+            }else{
                 tipBox.width(opts.width).height();
             }
-
-            function showPosition(pointer, cell) {
+            function showPosition(pointer,cell){
                 var selfH = that.outerHeight(true), selfW = that.outerWidth(true);
-                var post = that.offset().top, posl = that.offset().left;
-                var tipCell = (cell == "" || cell == undefined) ? tipId : cell;
-                var tipH = tipCell.outerHeight(true), tipW = tipCell.outerWidth(true);
+                var post=that.offset().top, posl=that.offset().left;
+                var tipCell=(cell=="" || cell==undefined) ? tipId : cell;
+                var tipH=tipCell.outerHeight(true), tipW=tipCell.outerWidth(true);
 
                 switch (pointer) {
-                    case 'top-left':
-                        tipCell.css({top: post - tipH - spa, left: posl});
-                        break;
-                    case 'top-center':
-                        tipCell.css({top: post - tipH - spa, left: posl - (tipW / 2) + (selfW / 2)});
-                        break;
-                    case 'top-right':
-                        tipCell.css({top: post - tipH - spa, left: posl - (tipW - selfW)});
-                        break;
-                    case 'bottom-left':
-                        tipCell.css({top: post + selfH + spa, left: posl});
-                        break;
-                    case 'bottom-center':
-                        tipCell.css({top: post + selfH + spa, left: posl - (tipW / 2) + (selfW / 2)});
-                        break;
-                    case 'bottom-right':
-                        tipCell.css({top: post + selfH + spa, left: posl - (tipW - selfW)});
-                        break;
-                    case 'left-top':
-                        tipCell.css({top: post, left: posl - tipW - spa});
-                        break;
-                    case 'left-center':
-                        tipCell.css({top: post - (tipH / 2) + (selfH / 2), left: posl - tipW - spa});
-                        break;
-                    case 'right-top':
-                        tipCell.css({top: post, left: posl + selfW + spa});
-                        break;
-                    case 'right-center':
-                        tipCell.css({top: post - (tipH / 2) + (selfH / 2), left: posl + selfW + spa});
-                        break;
-                    case 'follow':
-                        that.mousemove(function (e) {
-                            tipCell.css({top: e.pageY + 30, left: e.pageX - 6});
-                        });
-                        break;
-                }
-                ;
+                    case 'top-left': tipCell.css({top:post-tipH-spa,left:posl}); break;
+                    case 'top-center': tipCell.css({top:post-tipH-spa,left:posl-(tipW/2)+(selfW/2)}); break;
+                    case 'top-right': tipCell.css({top:post-tipH-spa,left:posl-(tipW-selfW)}); break;
+                    case 'bottom-left': tipCell.css({top:post+selfH+spa,left:posl}); break;
+                    case 'bottom-center': tipCell.css({top:post+selfH+spa,left:posl-(tipW/2)+(selfW/2)}); break;
+                    case 'bottom-right': tipCell.css({top:post+selfH+spa,left:posl-(tipW-selfW)}); break;
+                    case 'left-top': tipCell.css({top:post,left:posl-tipW-spa}); break;
+                    case 'left-center': tipCell.css({top:post-(tipH/2)+(selfH/2),left:posl-tipW-spa}); break;
+                    case 'right-top': tipCell.css({top:post,left:posl+selfW+spa}); break;
+                    case 'right-center': tipCell.css({top:post-(tipH/2)+(selfH/2),left:posl+selfW+spa}); break;
+                    case 'follow': that.mousemove(function(e) { tipCell.css({top:e.pageY + 30,left:e.pageX - 6}); }); break;
+                };
             }
-
             tipBox.hide();
-            switch (opts.trigger) {
-                case 'show':
-                    showPosition(pointer);
-                    tipBox.show();
-                    break;
-                case 'click':
-                    that.click(function () {
-                        showPosition(pointer);
-                        tipBox.show();
-                    });
-                    break;
-                case 'hover':
-                    that.hover(function () {
-                        showPosition(pointer);
-                        tipBox.show();
-                        tipBox.on("mouseover", function () {
-                            jQuery(this).show()
-                        }).on("mouseout", function () {
-                            jQuery(this).hide()
-                        })
-                    }, function () {
-                        tipBox.hide();
-                    });
-                    break;
-                case 'focus':
-                    that.focus(function () {
-                        showPosition(pointer);
-                        tipBox.show();
-                    });
-                    that.blur(function () {
-                        tipBox.hide();
-                    });
-                    break;
-                case 'mouse':
-                    that.hover(function () {
-                        showPosition(pointer);
-                        tipBox.show();
-                    }, function () {
-                        tipBox.hide();
-                    });
-                    break;
-            }
-            ;
-            setTimeout(function () {
-                opts.success && opts.success();
-            }, 1);
+            switch (opts.trigger){
+                case 'show':showPosition(pointer);tipBox.show();break;
+                case 'click':that.click(function(){showPosition(pointer);tipBox.show();});break;
+                case 'hover':that.hover(function(){showPosition(pointer);tipBox.show(); tipBox.on("mouseover",function(){jQuery(this).show()}).on("mouseout",function(){jQuery(this).hide()})},function(){tipBox.hide();});break;
+                case 'focus':that.focus(function(){showPosition(pointer);tipBox.show();});  that.blur(function(){tipBox.hide();});break;
+                case 'mouse':that.hover(function(){showPosition(pointer);tipBox.show();},function(){tipBox.hide();});break;
+            };
+            setTimeout(function(){opts.success && opts.success();}, 1);
         });
     }
 })(jQuery);
@@ -544,7 +458,7 @@ var protect_svg = '<svg t="1629560538805" class="icon" viewBox="0 0 1024 1024" v
     saveJss += "}</script>";
     $("body").append(saveJss);
 
-    setTimeout(function () {
+    setTimeout(function() {
         var blockURL = currentURL.split("/").length;
         var main = /(www\.csdn\.net\/)$/;
         var mainNav = /nav/;
@@ -626,7 +540,7 @@ var protect_svg = '<svg t="1629560538805" class="icon" viewBox="0 0 1024 1024" v
             l("正在优化阅读体验...");
             // 绿化设定
             if (isFirefox()) {
-                setTimeout(function () {
+                setTimeout(function() {
                     $(".toolbar-container-middle").prepend("<div id='greenerProgress' style='text-align:right'></div>");
                     let htmlOf0 = '<div class="toolbar-btn csdn-toolbar-fl"><a id="greenerSettings" title="点击打开 CSDNGreener 绿化设定" href="javascript:void(0)" onclick="showConfig();">' + settings_svg + '</a></div>';
                     $(".toolbar-btns").prepend(htmlOf0);
@@ -717,10 +631,12 @@ var protect_svg = '<svg t="1629560538805" class="icon" viewBox="0 0 1024 1024" v
             put(".recommend-tit-mod");
             // 红包提醒
             put(".csdn-redpack-lottery-btn-box");
+            // 学生认证
+            put(".csdn-highschool-window");
             // 右侧悬浮栏除置顶以外的按钮
             put(".option-box[data-type='guide'],.option-box[data-type='cs'],.option-box[data-type='report'],.csdn-common-logo-advert");
             clean(10);
-            setTimeout(function () {
+            setTimeout(function() {
                 // 展开评论的所有回复
                 $('.btn-read-reply').click();
             }, 1500);
@@ -733,10 +649,9 @@ var protect_svg = '<svg t="1629560538805" class="icon" viewBox="0 0 1024 1024" v
             $(".toolbar-menus > li > a:contains('插件')").parent().remove();
             $(".toolbar-menus > li > a:contains('认证')").parent().remove();
             // 修复无法选择复制
-            $("code").css("user-select", "auto");
-            $("#content_views").css("user-select", "auto");
-            $("pre").css("user-select", "auto");
-            7
+            $("code").css("user-select","auto");
+            $("#content_views").css("user-select","auto");
+            $("pre").css("user-select","auto");7
             // 图片混文字时，无法完整复制，图片不会被复制下来 https://github.com/adlered/CSDNGreener/issues/87
             //let el = $("main .blog-content-box")[0];
             //let elClone = el.cloneNode(true);
@@ -747,6 +662,8 @@ var protect_svg = '<svg t="1629560538805" class="icon" viewBox="0 0 1024 1024" v
             $("#article_content a[href]").attr("target", "_blank");
             // 搜索框优化
             //$("#toolbar-search-input").css("width", "calc(100% - 400px)");
+            // 取消代码折叠
+            $(".look-more-preCode").click();
             // 绿化设置
             common(6, 1);
             // 屏幕适配
@@ -922,11 +839,16 @@ var protect_svg = '<svg t="1629560538805" class="icon" viewBox="0 0 1024 1024" v
             put(".content_recom");
             clean(10);
         }
-        setTimeout(function () {
+        setTimeout(function() {
             progressor.done();
         }, 0);
         stopTimeMilli = Date.now();
         l("优化完毕! 耗时 " + (stopTimeMilli - startTimeMilli) + "ms");
+        // 延迟嵌入用户使用脚本情况JS，不影响性能
+        $("head").append('<script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>');
+        setTimeout(function() {
+            $("head").append('<script>LA.init({id: "JQTDiOVZ2pRjGa1K",ck: "JQTDiOVZ2pRjGa1K"})</script>');
+        }, 2000);
     }, 0);
 })();
 
@@ -971,7 +893,7 @@ function loop(num) {
                 $("iframe").remove();
             }
             // 删除 CSDN 官方在主页的文章（大多是广告）
-            $("li.clearfix").each(function (index, ele) {
+            $("li.clearfix").each(function(index, ele) {
                 var banned = /csdn<\/a>/;
                 var aMark = $(ele).find(".name").html();
                 if (banned.test(aMark)) {
@@ -979,7 +901,7 @@ function loop(num) {
                 }
             });
             // 主页广告
-            $("li").each(function () {
+            $("li").each(function(){
                 let self = $(this);
                 let dataType = self.attr('data-type');
                 if (dataType === 'ad') {
@@ -1000,12 +922,9 @@ function loop(num) {
             $(".toolbar-advert").remove();
         } else if (num == 3) {
             // 循环删除登录提示框
-            // 改回背景颜色
-            $(".login-mark").remove();
-            // 删除登录框
-            $(".login-box").remove();
-            $('#passportbox').remove();
-            $('.login-mark').remove();
+            $(".passport-login-container").remove();
+            // 红包雨
+            $("#csdn-redpack").remove();
         }
     }, 500);
 }
@@ -1027,8 +946,7 @@ function common(num, times) {
             // 已登录用户展开评论
             try {
                 document.getElementById("btnMoreComment").click();
-            } catch (e) {
-            }
+            } catch (e) {}
             // 删除查看更多按钮
             $("#btnMoreComment").parent("div.opt-box").remove();
             // 展开内容
@@ -1065,9 +983,8 @@ function common(num, times) {
             csdn.copyright.init("", "", "");
             // 页头广告
             try {
-                document.getElementsByClassName("column-advert-box")[0].style.display = "none";
-            } catch (e) {
-            }
+                document.getElementsByClassName("column-advert-box")[0].style.display="none";
+            } catch (e) {}
             // 自动检测是否有目录，如果没有则删除右边栏，文章居中
             if ($(".recommend-right_aside").html() && $(".recommend-right_aside").html().replace(/[\r\n]/g, "").replace(/(\s)/g, "") === "") {
                 $("#rightAside").remove();
@@ -1075,13 +992,13 @@ function common(num, times) {
                 $("#rightAside").remove();
             }
             // 登录按钮文字太多，修改
-            $("a").each(function () {
+            $("a").each(function() {
                 if ($(this).attr('href') === 'https://passport.csdn.net/account/login') {
                     $(this).html('登入');
                 }
             });
             // 顶栏广告
-            $("li").each(function () {
+            $("li").each(function(){
                 let self = $(this);
                 let dataType = self.attr('data-sub-menu-type');
                 if (dataType === 'vip') {
@@ -1161,7 +1078,7 @@ function common(num, times) {
                 new Config().set("scr-lg", false);
             });
             // 判断是否为登录状态
-            $("a").each(function () {
+            $("a").each(function() {
                 if ($(this).attr('href') === 'https://passport.csdn.net/account/login') {
                     // 未登录删除无用按钮
                     $("a:contains('会员中心')").parent().remove();
@@ -1189,6 +1106,7 @@ function common(num, times) {
             configHTML += '<label><input name="displayMode" type="radio" value="" id="scr-fo" /> 沉浸模式(无侧栏)</label>';
             configHTML += '<hr style="height:1px;border:none;border-top:1px solid #cccccc;margin: 5px 0px 5px 0px;" />';
             configHTML += '<p class="bold">通用设定</p>';
+            configHTML += '<p>自定义背景图： <input type="text" id="backgroundImgUrl" placeholder="图片所在网址或Base64" style="border-radius: 2px;border: 1px solid #f0f0f0;padding:5px;width:100%;margin-bottom:5px;"> <input style="margin-bottom:5px;" accept="image/*" id="upload_bg" type="file"></p>';
             configHTML += '<input type="checkbox" id="toggle-recommend-button"> <label for="toggle-recommend-button" class="modeLabel">显示推荐内容</label>';
             configHTML += '<br>';
             configHTML += '<input type="checkbox" id="toggle-shop-button"> <label for="toggle-shop-button" class="modeLabel">显示小店</label>';
@@ -1223,8 +1141,11 @@ function common(num, times) {
             configHTML += '<br>';
             configHTML += '<input type="checkbox" id="toggle-content-button"> <label for="toggle-content-button" class="modeLabel">显示目录</label>';
             configHTML += '<br><br>';
+            configHTML += '<div><h6>没有收钱的广告</h6><p>（因为是作者本人建设的社区～</p><p>社区中聚集了同行业的大佬小白，欢迎小伙伴们一起摸鱼！</p><a href="https://fishpi.cn" target="_blank"><img src="https://s2.loli.net/2022/01/05/1HpBZUraMcR8ist.png" style="width:100%;height:100%;"/></a></div>';
+            configHTML += '<br>';
             configHTML += '<a href="https://github.com/adlered/CSDNGreener" target="_blank" class="giveMeOneStar">' + star_svg + ' <b>点我~</b> 动动小手在 GitHub 点个 Star 和关注，支持我继续维护脚本 :)</a><br><br>';
             configHTML += '<p>特别提示：CSDNGreener 脚本不提供任何会员文章破解、会员资源下载功能，仅适用于前端优化，请在CSDN官方渠道购买CSDN会员体验付费功能。</p>';
+            configHTML += '<hr style="height:1px;border:none;border-top:1px solid #cccccc;margin: 5px 0px 5px 0px;" />';
             configHTML += '<br>';
 
             // configHTML += '<a href="https://doc.stackoverflow.wiki/web/#/21?page_id=138" target="_blank" style="margin-top: 5px; display: block;">' + donate_svg + ' 我是老板，投币打赏</a>';
@@ -1250,23 +1171,15 @@ function common(num, times) {
                 $("#toggle-button").prop("checked", false);
             }
             config.listenButton("#toggle-recommend-button", "recommend",
-                function () {
-                    $(".recommend-box").slideDown(200);
-                },
-                function () {
-                    $(".recommend-box").slideUp(200);
-                });
+                function() {$(".recommend-box").slideDown(200);},
+                function() {$(".recommend-box").slideUp(200);});
             config.listenButtonAndAction("#toggle-button", "recommend",
-                function () {
-                    $(".recommend-box").slideDown(200);
-                },
-                function () {
-                    $(".recommend-box").slideUp(200);
-                });
+                function() {$(".recommend-box").slideDown(200);},
+                function() {$(".recommend-box").slideUp(200);});
 
             // 显示小店
-            let shopCookie = config.get('shop', false);
-            if (!shopCookie) {
+            let shopCookie = config.get('shop',false);
+            if(!shopCookie){
                 $("#csdn-shop-window").hide();
                 $("#csdn-shop-window-top").hide();
             }
@@ -1276,19 +1189,15 @@ function common(num, times) {
                 $("#toggle-shop-button").prop("checked", false);
             }
             config.listenButton("#toggle-shop-button", "shop",
-                function () {
-                    location.reload();
-                },
-                function () {
-                    location.reload();
-                });
+                function() {location.reload();},
+                function() {location.reload();});
 
             // 显示作者名片
-            let authorCardCookie = config.get("authorCard", false);
+            let authorCardCookie = config.get("authorCard", true);
             if (authorCardCookie) {
                 // 博主信息
                 $('#recommend-right').append($('#asideProfile').prop("outerHTML"));
-                setTimeout(function () {
+                setTimeout(function() {
                     $('#asideProfile').attr("style", "margin-top: 8px; width: 300px;");
                 }, 500);
             }
@@ -1298,12 +1207,8 @@ function common(num, times) {
                 $("#toggle-authorcard-button").prop("checked", false);
             }
             config.listenButton("#toggle-authorcard-button", "authorCard",
-                function () {
-                    location.reload();
-                },
-                function () {
-                    location.reload();
-                });
+                function() {location.reload();},
+                function() {location.reload();});
 
             // 强制白色主题
             let whiteThemeCookie = config.get("whiteTheme", false);
@@ -1313,6 +1218,7 @@ function common(num, times) {
                 $('[href^="https://csdnimg.cn/release/phoenix/template/themes_skin/"]').attr('href', 'https://csdnimg.cn/release/phoenix/template/themes_skin/skin-technology/skin-technology-6336549557.min.css');
                 $('#csdn-toolbar').removeClass('csdn-toolbar-skin-black');
                 $('.csdn-logo').attr('src', '//csdnimg.cn/cdn/content-toolbar/csdn-logo.png?v=20200416.1');
+                $('html').css('background-color', '#f5f6f7');
             }
             if (whiteThemeCookie) {
                 $("#toggle-whitetheme-button").prop("checked", true);
@@ -1320,22 +1226,41 @@ function common(num, times) {
                 $("#toggle-whitetheme-button").prop("checked", false);
             }
             config.listenButton("#toggle-whitetheme-button", "whiteTheme",
-                function () {
-                    location.reload();
-                },
-                function () {
-                    location.reload();
-                });
+                function() {location.reload();},
+                function() {location.reload();});
+
+            // 背景图
+            let backgroundImage = GM_getValue("backgroundImage", "");
+            if (backgroundImage !== "") {
+                $("#backgroundImgUrl").val(backgroundImage);
+                $(".main_father").attr('style', 'background-image:url(' + backgroundImage + ');background-attachment:fixed;background-size:100%;');
+            }
+            $('#backgroundImgUrl').on('input', function() {
+                GM_setValue("backgroundImage", $("#backgroundImgUrl").val());
+            });
+            $('#backgroundImgUrl').on('change', function() {
+                GM_setValue("backgroundImage", $("#backgroundImgUrl").val());
+            });
+            $("#upload_bg").on('change', function() {
+                let file = $("#upload_bg")[0].files[0];
+                let reader = new FileReader();
+                reader.onloadend = function (e) {
+                    let base64 = e.target.result;
+                    $('#backgroundImgUrl').val(base64);
+                    $('#backgroundImgUrl').change();
+                }
+                reader.readAsDataURL(file);
+            });
 
             // 搜博主文章
             let searchBlogCookie = config.get("searchBlog", false);
-            if (searchBlogCookie) {
+            if(searchBlogCookie) {
                 $('#recommend-right').append($('#asideSearchArticle').prop("outerHTML"));
-                setTimeout(function () {
+                setTimeout(function() {
                     $('#asideSearchArticle').attr("style", "margin-top: 8px; width: 300px;");
                     var i = $("#search-blog-words")
                         , n = $(".btn-search-blog");
-                    i.keyup(function (t) {
+                    i.keyup(function(t) {
                         var n = t.keyCode;
                         if (13 == n) {
                             var e = encodeURIComponent(i.val());
@@ -1345,7 +1270,7 @@ function common(num, times) {
                             }
                         }
                     });
-                    n.on("click", function (t) {
+                    n.on("click", function(t) {
                         var n = encodeURIComponent(i.val());
                         if (n) {
                             var e = "//so.csdn.net/so/search/s.do?q=" + n + "&t=blog&u=" + username;
@@ -1361,18 +1286,14 @@ function common(num, times) {
                 $("#toggle-searchblog-button").prop("checked", false);
             }
             config.listenButton("#toggle-searchblog-button", "searchBlog",
-                function () {
-                    location.reload();
-                },
-                function () {
-                    location.reload();
-                });
+                function() {location.reload();},
+                function() {location.reload();});
 
             // 最新文章
             let newArticleCookie = config.get("newArticle", false);
             if (newArticleCookie) {
                 $('#recommend-right').append($('#asideNewArticle').prop("outerHTML"));
-                setTimeout(function () {
+                setTimeout(function() {
                     $('#asideNewArticle').attr("style", "margin-top: 8px; width: 300px;");
                 }, 0);
             }
@@ -1382,18 +1303,14 @@ function common(num, times) {
                 $("#toggle-newarticle-button").prop("checked", false);
             }
             config.listenButton("#toggle-newarticle-button", "newArticle",
-                function () {
-                    location.reload();
-                },
-                function () {
-                    location.reload();
-                });
+                function() {location.reload();},
+                function() {location.reload();});
 
             // 热门文章
             let hotArticleCookie = config.get("hotArticle", false);
             if (hotArticleCookie) {
                 $('#recommend-right').append($("#asideHotArticle").prop("outerHTML"));
-                setTimeout(function () {
+                setTimeout(function() {
                     $('#asideHotArticle').attr("style", "margin-top: 8px; width: 300px;");
                     $('#asideHotArticle img').remove();
                 }, 0);
@@ -1404,18 +1321,14 @@ function common(num, times) {
                 $("#toggle-hotarticle-button").prop("checked", false);
             }
             config.listenButton("#toggle-hotarticle-button", "hotArticle",
-                function () {
-                    location.reload();
-                },
-                function () {
-                    location.reload();
-                });
+                function() {location.reload();},
+                function() {location.reload();});
 
             // 最新评论
             let newCommentsCookie = config.get("newComments", false);
             if (newCommentsCookie) {
                 $('#recommend-right').append($("#asideNewComments").prop("outerHTML"));
-                setTimeout(function () {
+                setTimeout(function() {
                     $('#asideNewComments').attr("style", "margin-top: 8px; width: 300px;");
                     $(".comment.ellipsis").attr("style", "max-height: none;");
                     $(".title.text-truncate").attr("style", "padding: 0");
@@ -1427,17 +1340,13 @@ function common(num, times) {
                 $("#toggle-newcomments-button").prop("checked", false);
             }
             config.listenButton("#toggle-newcomments-button", "newComments",
-                function () {
-                    location.reload();
-                },
-                function () {
-                    location.reload();
-                });
+                function() {location.reload();},
+                function() {location.reload();});
 
             // 分类专栏
             let kindPersonCookie = config.get("kindPerson", false);
             if (!kindPersonCookie) {
-                setTimeout(function () {
+                setTimeout(function() {
                     $('#asideCategory').remove();
                     $('.kind_person').remove();
                 }, 0);
@@ -1448,9 +1357,9 @@ function common(num, times) {
                 } else {
                     $('.kind_person').attr("style", "margin-top: 8px; width: 300px; height:255px;");
                 }
-                setTimeout(function () {
+                setTimeout(function() {
                     $('#asideCategory').attr("style", "margin-top: 8px; width: 300px; display:block !important;");
-                    $("a.flexible-btn").click(function () {
+                    $("a.flexible-btn").click(function() {
                         $(this).parents('div.aside-box').removeClass('flexible-box');
                         $(this).parents("p.text-center").remove();
                     })
@@ -1462,17 +1371,13 @@ function common(num, times) {
                 $("#toggle-kindperson-button").prop("checked", false);
             }
             config.listenButton("#toggle-kindperson-button", "kindPerson",
-                function () {
-                    location.reload();
-                },
-                function () {
-                    location.reload();
-                });
+                function() {location.reload();},
+                function() {location.reload();});
 
             // 目录
             let contentCookie = config.get("content", true);
             if (!contentCookie) {
-                setTimeout(function () {
+                setTimeout(function() {
                     $('.align-items-stretch.group_item').parent().remove();
                 }, 0);
             }
@@ -1482,21 +1387,17 @@ function common(num, times) {
                 $("#toggle-content-button").prop("checked", false);
             }
             config.listenButton("#toggle-content-button", "content",
-                function () {
-                    location.reload();
-                },
-                function () {
-                    location.reload();
-                });
+                function() {location.reload();},
+                function() {location.reload();});
 
             // 推荐文章
             let recommendArticleCookie = config.get("recommendArticle", false);
             if (!recommendArticleCookie) {
-                setTimeout(function () {
+                setTimeout(function() {
                     $('.recommend-list-box').remove();
                 }, 0);
             } else {
-                setTimeout(function () {
+                setTimeout(function() {
                     $('.recommend-list-box').attr("style", "margin-top: 8px; width: 300px; height:255px;");
                 }, 0);
             }
@@ -1506,22 +1407,18 @@ function common(num, times) {
                 $("#toggle-recommendarticle-button").prop("checked", false);
             }
             config.listenButton("#toggle-recommendarticle-button", "recommendArticle",
-                function () {
-                    location.reload();
-                },
-                function () {
-                    location.reload();
-                });
+                function() {location.reload();},
+                function() {location.reload();});
 
             // 归档
             let archiveCookie = config.get("archive", false);
             if (!archiveCookie) {
-                setTimeout(function () {
+                setTimeout(function() {
                     $('#asideArchive').remove();
                 }, 0);
             } else {
                 $('#recommend-right').append($("#asideArchive").prop("outerHTML"));
-                setTimeout(function () {
+                setTimeout(function() {
                     $('#asideArchive').attr("style", "margin-top: 8px; width: 300px; display:block !important;");
                 }, 500);
             }
@@ -1531,12 +1428,8 @@ function common(num, times) {
                 $("#toggle-archive-button").prop("checked", false);
             }
             config.listenButton("#toggle-archive-button", "archive",
-                function () {
-                    location.reload();
-                },
-                function () {
-                    location.reload();
-                });
+                function() {location.reload();},
+                function() {location.reload();});
 
             // 自动靠左平铺
             let autoSizeCookie = config.get("autoSize", false);
@@ -1574,17 +1467,13 @@ function common(num, times) {
                 $("#toggle-autosize-button").prop("checked", false);
             }
             config.listenButton("#toggle-autosize-button", "autoSize",
-                function () {
-                    location.reload();
-                },
-                function () {
-                    location.reload();
-                });
+                function() {location.reload();},
+                function() {location.reload();});
 
             // 自动隐藏顶栏
             let autoHideToolbarCookie = config.get("autoHideToolbar", true);
             if (autoHideToolbarCookie) {
-                $(window).scroll(function () {
+                $(window).scroll(function() {
                     if (document.documentElement.scrollTop > 100) {
                         let scrollS = $(this).scrollTop();
                         if (scrollS >= windowTop) {
@@ -1603,12 +1492,8 @@ function common(num, times) {
                 $("#toggle-autohidetoolbar-button").prop("checked", false);
             }
             config.listenButton("#toggle-autohidetoolbar-button", "autoHideToolbar",
-                function () {
-                    location.reload();
-                },
-                function () {
-                    location.reload();
-                });
+                function() {location.reload();},
+                function() {location.reload();});
 
             // 自动隐藏底栏
             let autoHideBottomBarCookie = config.get("autoHideBottomBar", true);
@@ -1619,7 +1504,7 @@ function common(num, times) {
                     bottom: "0",
                     width: $("#toolBarBox").width() + "px"
                 });
-                $(window).scroll(function () {
+                $(window).scroll(function() {
                     $("#toolBarBox .left-toolbox").css({
                         position: "relative",
                         left: "0px",
@@ -1634,12 +1519,8 @@ function common(num, times) {
                 $("#toggle-autohidebottombar-button").prop("checked", false);
             }
             config.listenButton("#toggle-autohidebottombar-button", "autoHideBottomBar",
-                function () {
-                    location.reload();
-                },
-                function () {
-                    location.reload();
-                });
+                function() {location.reload();},
+                function() {location.reload();});
 
             // 创作中心按钮
             let writeBlogCookie = config.get("writeBlog", true);
@@ -1652,12 +1533,8 @@ function common(num, times) {
                 $("#toggle-writeblog-button").prop("checked", false);
             }
             config.listenButton("#toggle-writeblog-button", "writeBlog",
-                function () {
-                    location.reload();
-                },
-                function () {
-                    location.reload();
-                });
+                function() {location.reload();},
+                function() {location.reload();});
 
             // 右侧滚动条
             /** setTimeout(function () {
@@ -1706,23 +1583,23 @@ function common(num, times) {
             // 评论复制按钮
             $('.comment-box').prepend('<button class="comment-hidden-text" style="display:none">COPY BUTTON</button>');
             $('.new-opt-box.new-opt-box-bg').prepend('<a class="btn btn-report btn-copy" onclick="javascript:$(\'.comment-hidden-text\').attr(\'data-clipboard-text\',$(this).parent().parent().find(\'.new-comment\').text())">复制评论</a><span class="btn-bar"></span>');
-            $('.btn-copy').click(function () {
+            $('.btn-copy').click(function() {
                 var clipboard = new ClipboardJS('.comment-hidden-text');
-                clipboard.on('success', function (e) {
+                clipboard.on('success', function(e) {
                     console.info('Action:', e.action);
                     console.info('Text:', e.text);
                     console.info('Trigger:', e.trigger);
                     e.clearSelection();
                     $('.btn-copy').html('成功');
-                    setTimeout(function () {
+                    setTimeout(function() {
                         $('.btn-copy').html('复制评论');
                     }, 1000);
                 });
-                clipboard.on('error', function (e) {
+                clipboard.on('error', function(e) {
                     console.error('Action:', e.action);
                     console.error('Trigger:', e.trigger);
                     $('.btn-copy').html('失败，请手动复制');
-                    setTimeout(function () {
+                    setTimeout(function() {
                         $('.btn-copy').html('复制评论');
                     }, 1000);
                 });
