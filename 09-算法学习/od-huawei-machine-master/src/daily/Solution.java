@@ -1,4 +1,4 @@
-package daily_study;
+package daily;
 
 import java.util.ArrayList;
 import java.util.List;

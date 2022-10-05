@@ -1,0 +1,154 @@
+> 2022年8月1日22:47:23
+
+1. 任务:
+
+    Eureka源码学习:
+
+        1. 节点之间如果同步
+
+            1.1 比如一个服务注册到了EurekaA, EurekaA和EurekaB怎么做到同步.
+
+        2. 自我保护又是什么?
+
+3. 历史:
+
+> 2022年8月2日22:37:54
+
+1. 任务:
+
+   GANSS高斯 GS87C   249/219   还可以   219 * 2 - 10 = 428
+
+3. 历史:
+
+> 2022年8月3日22:23:33
+
+1. 任务:
+
+2. 历史:
+
+   听歌 -> 买键盘(买了2个219的, 阿米洛太贵了, 算了) -> 维护日常计划 -> 听歌 -> 看Eureka相关资料
+
+> 2022年8月8日23:02:53
+
+    1. 任务:
+
+    2. 历史:
+
+    1. 吃早餐(逛B站)
+    2. 投屏玩LOL手游
+
+    其他:
+
+    1. 用户表, 角色表, 成员表 配置服务都有
+
+    2. 难点可能就是前端这里的处理.
+
+    3. 这个可能会用的: 【P21】21. 尚硅谷_Shiro_权限注解.flv
+
+       3.1 Redis 也可以做存储.
+
+    需求:
+
+    1. 不是所有的人都可以看到全量的视图
+
+       1.1 详情也不是所有人都可以进去. (这个需要补偿考虑)
+
+    2. 指定的人才可以看到, 对应的视图.
+
+    E:\12-OBS视频存储
+
+    E:\10-视频剪辑\86-游戏视频
+
+    Blueberry 投屏麦克风声音录制不进去
+
+    直播姬 需要在平板上直播, 仅仅是直播类容投屏了. 会消耗平板的性能.
+
+    如果投屏LOL手游, Blueberry 和 LOL手游不兼容.
+
+>  2022年8月9日22:43:18
+
+1. 开发:
+
+2. 历史:
+
+    1. 计划整理
+
+    2. 前端VUE学习
+
+    3. Windows 批量修改文件名
+
+        3.1 背景:
+
+        下载B站视频, 文件名问题的困扰
+
+        3.1 参考资料:
+
+        https://www.bilibili.com/video/BV1qE411w7GA?spm_id_from=333.337.search-card.all.click&vd_source=4c96b3fea946c67984232722ed570d43
+
+        3.2 自己测试
+
+    4. 记录:
+
+    任务:
+
+    	1. 计划整理
+    	2. docker基础知识回顾
+    	3. 使用docker安装mysql
+    	4. 试图探究商用评审的脏数据问题
+
+    其他:
+
+    	docker 简单安装:
+
+    		步骤一: 使用阿里镜像源/国外的会很慢
+    		cat >>/etc/yum.repos.d/docker.repo<<EOF
+    		[docker-ce-edge]
+    		name=Docker CE Edge - \$basearch
+    		baseurl=https://mirrors.aliyun.com/docker-ce/linux/centos/7/\$basearch/edge
+    		enabled=1
+    		gpgcheck=1
+    		gpgkey=https://mirrors.aliyun.com/docker-ce/linux/centos/gpg
+    		EOF
+
+
+    		步骤二: yum安装
+    		yum -y install docker-ce
+
+    		步骤三(可不查看): 查看docker版本
+    		docker --version
+
+    		步骤四: 配置开机自启
+    		systemctl enable docker
+
+    		步骤五: 启动docker
+    		systemctl start docker
+
+    		常用命令:
+
+    			查看所有镜像:
+    			docker images
+    			查看所有启动的应用:
+    			docker ps
+    			进去容器的一种方式:
+    			docker attach 44fc0f0582d9
+
+    	docker安装MYSQL:
+
+    		docker search mysql
+    		docker pull mysql:latest
+    		docker images|grep mysql
+    		docker run -itd --name mysql-zbz -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 mysql
+    		docker ps|grep mysql
+    		docker exec -it mysql-zbz bash
+    		mysql -uroot -p
+    		ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY '123456';
+    		flush privileges;
+
+
+
+> 2022年8月10日23:25:59
+
+1. 记录:
+
+    1. 手游LOL
+    2. 逛B站
