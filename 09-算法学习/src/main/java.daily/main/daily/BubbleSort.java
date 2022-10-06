@@ -1,4 +1,4 @@
-package daily;
+package main.daily;
 
 import java.util.Arrays;
 
@@ -76,6 +76,4 @@ public class BubbleSort {
         arr[j] = arr[i];
         arr[i] = temp;
     }
-
-
 }
