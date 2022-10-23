@@ -76,3 +76,15 @@
     1. OpenJDK
 
     https://blog.csdn.net/xiaozhengN/article/details/127350257
+
+> 2022年10月19日22:14:20
+
+1. 开发:
+
+2. 历史:
+
+    灵感:
+
+        在 Git Push之前, 合并两次提交   done
+
+        IDEA 合并多次Commit   done
