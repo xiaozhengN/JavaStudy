@@ -1,3 +1,11 @@
-log4j:WARN No appenders could be found for logger (A).
-log4j:WARN Please initialize the log4j system properly.
-log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.
+--add-opens java.base/java.util.concurrent=ALL-UNNAMED --add-opens java.base/java.util.concurrent.locks=ALL-UNNAMED
+
+JVM ALL-UNNAMED
+
+because it happened inside debugger evaluation
+
+Enable alternative view for Collections classes
+
+Enable toString object view
+
+Skipped breakpoint at xxx because it happened inside debugger evaluation

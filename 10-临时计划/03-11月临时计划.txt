@@ -1,0 +1,55 @@
+> 2022年11月1日21:54:43
+
+1. 开发:
+
+2. 历史:
+
+    http://lol.pentaq.com/BPView?team=blue&simId=B1CD8C35-6777-A2CE-8377-FE861278548F&code=F4F3QHO1&time=0&lang=cn
+
+    Open JDK 16.0.1
+
+    --add-opens java.base/java.util.concurrent=ALL-UNNAMED --add-opens java.base/java.util.concurrent.locks=ALL-UNNAMED
+
+    原因是JDK中的/lib/tool.jar和/lib/rt.jar已经从Java SE 9中删除，具体处理办法：
+
+    D:\JDK\java1.8\jre1.8\lib\rt.jar
+    D:\JDK\java1.8\lib\tools.jar
+
+    https://www.cnblogs.com/apocelipes/p/13562345.html
+
+    Window 10 显示 时间的时分秒
+
+    log.info("LOCK: {}", LOCK)
+
+    LOCK.unlock()
+
+> 2022年11月2日23:20:28
+
+1. 开发:
+
+2. 历史:
+
+    不能打印阻塞队列.
+
+    线程切换也和老师讲得不一样.
+
+    because it happened debugger evaluation
+
+    Enable alternative view for Collections classes
+
+    Enable toString object view
+
+    知道博客:
+    https://blog.csdn.net/qq_36285899/article/details/113610970
+    https://blog.csdn.net/sun1318578251/article/details/105937958
+    https://blog.csdn.net/ximaiyao1984/article/details/108759381
+
+> 2022年11月7日06:03:13
+
+1. 开发:
+
+2. 历史:
+
+    灵感:
+
+    1. 用什么可与做原型图?
