@@ -1,0 +1,146 @@
+> 2023年2月5日12:00:43
+
+1. 开发:
+
+2. 历史:
+
+    周五下班开始看《狂飙》终于断断续续看完了
+
+    1. 20: 00 ~ 20: 30 出去吃个饭
+
+    2. IDEA 2022.3.1 版本
+
+        2.1 适配的翻译插件
+
+        2.2 第Markdown 的支持
+
+        2.3 webstorm是否有翻译插件
+
+    3. 面试简历准备(可以在之前的简历做更新)
+
+    4. 2022.3.1IDEA 激活
+
+    其他:
+
+    trial
+
+    Internal error. Please refer to https://jb.gg/ide/critical-startup-errors
+
+    com.intellij.ide.plugins.PluginManagerCore$EssentialPluginMissingException: Missing essential plugins: com.intellij (platform prefix: null)
+        at com.intellij.ide.plugins.PluginManagerCore.initializePlugins(PluginManagerCore.java:769)
+        at com.intellij.ide.plugins.PluginManagerCore.initializeAndSetPlugins(PluginManagerCore.java:1043)
+        at com.intellij.ide.plugins.PluginDescriptorLoader$scheduleLoading$pluginSetDeferred$1.invokeSuspend(PluginDescriptorLoader.kt:397)
+        at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+        at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106)
+        at kotlinx.coroutines.scheduling.CoroutineScheduler.runSafely(CoroutineScheduler.kt:570)
+        at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.executeTask(CoroutineScheduler.kt:750)
+        at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.runWorker(CoroutineScheduler.kt:677)
+        at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.run(CoroutineScheduler.kt:664)
+
+    -----
+    Your JRE: 17.0.5+1-b653.25 amd64 (JetBrains s.r.o.)
+    D:\04-software\21-IDEA_2022.3.2\jbr
+
+    https://tech.souyunku.com/?p=49115
+
+    -javaagent:D:\04-software\21-IDEA_2022.3.2\ja-netfilter.jar
+    --add-opens=java.base/jdk.internal.org.objectweb.asm=ALL-UNNAMED
+    --add-opens=java.base/jdk.internal.org.objectweb.asm.tree=ALL-UNNAMED
+
+3. 下午历史:
+
+1. 简历准备
+
+1.1 项目完善 (项目并没有那个重要)
+
+	CDE商用评审
+	CDE文件外发
+	CDE外发评审
+	CDE商用合入看板
+
+介绍一下最近做得一个项目?
+
+    1. 一句话介绍一下项目是什么?
+
+        开发者提交的一行代码 -> 商用发布
+
+        版本包的概念 HarmonyOS 3.1.0 手机系统层面, 基带软件
+
+        代码合入
+
+        评审, 测试, 想应用市场发布/向解决方案发布
+
+        核心管控这套流程.
+
+        代码 -> 版本发布包 生命周期
+
+        公用的环境桌面
+
+        项目空间/团队空间
+
+        晨会 -> 需求/缺陷/任务 ->
+
+        开发者桌面
+        测试者桌面
+        赤兔桌面
+        AR/SR
+        DTS
+
+        通过整合多个之前的老系统, 而演化迭代出来的一个项目团队.
+
+        CDE是通用桌面环境（Common Desktop Environment）的缩写.
+        华为的CDE系统主要价值是: 为全公司开发人员, 提供一个通用的自动化办公的环境桌面, 避免用户在多个系统间多次切换,
+        提高开发人员办公效率.
+
+    2. 项目的技术栈
+
+        前端: Vue
+        后端: SpringBoot + SpringCloud + MybatisPlus
+        数据持久层: MySQL
+        数据缓存: Redis
+        消息中间件: Kafaka
+        构建中间件: Jekins
+
+        项目前端采用Vue, 后端采用SpringBoot + SpringCloud + MybatisPlus, 数据持久化通过MySQL存储,
+        使用Redis做数据缓存, Kafaka做消息中间件, 项目发布底层采用Jekins做多节点自动发布.
+
+    3. 项目团队介绍
+
+        按照业务发展, CDE项目包含: 注册中心服务, 网关服务, 配置服务, 数据服务, 代码服务, 项目作业服务, 可信服务, 看板服务
+        ..., xx个服务.
+
+        总开发人数约 60人.
+
+    4. 自己负责的模块
+
+        项目作业服务: 商用评审, 商用合入看板
+        代码服务: 文件外发, 外非评审
+
+    5. 开发模式:
+
+        收集/挖掘用户诉求, 转变为需求
+        大需求发现设计, 详细设计方案. 评审. 开发. 测试. 发布.
+
+    BOSS项目介绍模板:
+
+    1. 名称
+    2. 角色
+    3. 链接地址
+    4. 起止时间
+    5. 项目描述
+
+    6. 项目业绩
+
+    1.2 技术栈更新
+
+        个人优势
+            熟练 HTML、CSS、JavaScript、jQuery、Ajax 等前端技术
+            熟练 SpringMVC、Sping、Mybatis、Hibernate 等开源框架
+            熟练 MySQL 数据库，熟悉 Oracle 等关系型数据库
+            熟悉 Redis、Ngnix、VueJs 等技术
+            熟悉 SpringBoot、SpringCloud、Eureka 分布式相关技术
+            熟悉 Linux、Docker 常用命令
+            熟悉 Portainer、Nacos、Zipkin、Sentinel 等工具
+            熟悉 JUC、JVM、MySQL 优化、ZK 分布式锁
+
+    2. 面试题学习

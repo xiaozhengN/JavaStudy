@@ -117,23 +117,3 @@
     static final
 
     JAVA 内存模型
-
-> 2022年12月8日22:19:17
-
-1. 开发:
-
-2. 历史:
-
-    百度贴吧其实很多逻辑删除, 信息如何去清理?
-
-    如何去休息和工作的平衡
-
-    生活和工作如何去平衡?
-
-    ThreadLocal 内存泄漏
-
-    https://www.bilibili.com/video/BV1ZY4y1L7WJ
-
-    代码格式化插件或配置. 代码太长了, 看得难受.
-
-    https://itdachen.com
