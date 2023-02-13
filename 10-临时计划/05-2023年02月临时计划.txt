@@ -144,3 +144,185 @@
             熟悉 JUC、JVM、MySQL 优化、ZK 分布式锁
 
     2. 面试题学习
+
+> 2023年2月11日19:18:23
+
+1. 开发:
+
+2. 历史:
+
+    1. 蘑菇博客网站搭建:
+
+        Fork: https://gitee.com/xiaozhengN/mogu_blog_v2
+
+        参考博客: https://www.moguit.cn/info/1151
+
+    资料:
+
+        F:\03-下载\02-Chrome\docker-compose-Linux-x86_64
+
+        find / -iname docker-compose-Linux-x86_64
+
+        mv docker-compose-Linux-x86_64  /usr/local/bin/docker-compose
+        chmod +x /usr/local/bin/docker-compose
+        docker-compose -v
+
+        cd docker-compose
+        chmod +x bin/kernStartup.sh
+        chmod +x bin/kernShutdown.sh
+        chmod +x bin/update.sh
+        chmod +x bin/wait-for-it.sh
+
+    yum -y install dos2unix*
+    dos2unix kernStartup.sh
+    dos2unix kernShutdown.sh
+    dos2unix update.sh
+    dos2unix wait-for-it.sh
+
+    http://106.52.173.54:9000
+        admin/1qaz@WSX,.
+
+    http://106.52.173.54:8848/nacos
+
+
+    服务器:
+
+        106.52.173.54		root/1小写2大写,.
+
+        https://console.cloud.tencent.com/lighthouse/instance/index?rid=1
+
+        CPU: 2核 内存: 4GB
+
+        2023-04-05 11:24:11
+
+    其他:
+
+        1. 缺少连接服务器客户端.
+
+    执行位置:
+
+        创建网络
+
+3. 提神计划:
+
+    2. 简历项目优化
+
+    3. 技术点优化
+
+    4. 吃饭
+
+> 2023年2月12日10:20:56
+
+1. 开发:
+
+2. 历史:
+
+    任务:
+
+        1. 蘑菇博客再次搭建
+
+            1.1 按照作者提供的WIKI完成搭建
+
+            1.2 使用本地的源码, 定制化修改
+
+    其他:
+
+        1. 22: 00 出去一趟, 吃水饺
+
+        portainer:
+        http://106.52.173.54:9000
+        admin/1qaz@WSX,.
+
+        nacos:
+        http://106.52.173.54:8848/nacos
+        nacos/nacos
+
+        106.52.173.54
+
+        # admin端
+        http://106.52.173.54:8601/swagger-ui/index.html
+
+        # web端
+        http://106.52.173.54:8603/swagger-ui/index.html
+
+        # 前端页面
+        http://106.52.173.54:9527
+
+        # 后端页面
+        http://106.52.173.54:9528
+
+    灵感:
+
+        1. 完善学习路线项目.
+
+3. 提神计划:
+
+    1. 蘑菇个人博客搭建
+
+> 2023年2月14日05:24:22
+
+1. 历史:
+
+    1. 蘑菇个人博客搭建
+
+        1.1 MINIO 做对象存储
+
+        1.2 定制化镜像, 不要使用别人的镜像
+
+    其他:
+
+        1. Docker 安装 MINIO
+
+        https://blog.csdn.net/qq_40321119/article/details/107951712
+        https://blog.csdn.net/zzzgd_666/article/details/112609579
+
+        106.52.173.54
+
+        https://106.52.173.54:2376
+
+        telnet 106.52.173.54 2376
+
+        https://106.52.173.54:2376
+
+        curl https://106.52.173.54:2376/info
+
+        curl --insecure https://106.52.173.54:2376/info --cert /opt/cert/docker/cert.pem --key /opt/cert/docker/key.pem --cacert /opt/cert/docker/ca.pem
+
+        curl -k --cert client.pem --key key.pem https://106.52.173.54:2376/info
+
+        tcp://106.52.173.54:2375
+
+    灵感:
+
+        1. Docker 部署里面的细节不会控制, 都是别人的镜像
+
+        2. 在容器里查看日志
+
+        3. 客户端连接超时设置
+
+    遇到的问题汇总:
+
+        1. IDEA 连接不上2375端口:
+
+        TCP socket Cannto connect: org.apache.hc.client5.http.ConnetcTimeoutException: Connect to http://2375
+        IDEA Docker 2375 连接超时
+
+        开启防火墙2376端口:
+        firewall-cmd --zone=public --add-port=2376/tcp --permanent
+        firewall-cmd --reload
+
+        处理方法: https://blog.csdn.net/weixin_44175698/article/details/109275235
+
+        有价值, 但无法解决:
+        https://blog.csdn.net/wssdds/article/details/124916924
+
+        没有成功, 换上面的博客:
+        https://blog.csdn.net/qq_40321119/article/details/107951712
+
+        Canot connet: javax.net.ssl.SSLPeerUnverifiedException: Certificate for 106.52.173.54>
+        doesn`t match any of the subject alternative names:
+
+        <artifactId>spring-boot-maven-plugin</artifactId>
+
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <version>2.2.5.RELEASE</version>
