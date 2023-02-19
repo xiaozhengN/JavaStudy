@@ -326,3 +326,48 @@
 
         <artifactId>spring-boot-maven-plugin</artifactId>
         <version>2.2.5.RELEASE</version>
+
+2. 历史2:
+
+    项目拆成前后端
+
+    个人博客前端
+
+    106.52.173.54
+
+    http://106.52.173.54:8607/mogu-admin
+    http://106.52.173.54:8607/mogu-picture
+    http://106.52.173.54:8607/mogu-web
+    http://106.52.173.54:8607/mogu-search
+    http://106.52.173.54:8607/mogu-spider
+    http://106.52.173.54:8600/
+    http://106.52.173.54:9527
+    http://106.52.173.54:8080/solr
+    http://106.52.173.54:5601
+
+    http://106.52.173.54:9527
+    http://106.52.173.54:8607/mogu-picture
+    http://106.52.173.54:8607/mogu-web
+    http://106.52.173.54:8607/mogu-search
+
+    还可以拆分
+
+    前端2个
+
+    后端每个微服务一个单独的代码仓, 抽取一个common
+
+> 2023年2月18日20:07:54
+
+1. 历史:
+
+    IDE 连接Docker
+
+    IDEA/WebStrom
+
+    Dockerfile
+
+    如何将本地的服务打包成镜像发布到服务器?
+
+    9527 端口(默认)
+
+    registry.cn-shenzhen.aliyuncs.com/mogublog/nginx
