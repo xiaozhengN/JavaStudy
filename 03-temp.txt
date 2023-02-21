@@ -1,0 +1,7 @@
+框架和中间件这一块的简历怎么去书写呢?
+4. TODO 这里整理一下框架相关的知识点, Spring, SpringMVC, Mybatis, SpringCloud
+5. TODO 这里整理一下框架相关的知识点, Spring, SpringMVC, Mybatis, SpringCloud
+6. TODO 这里整理一下常见中间件相关的知识点, MySQL, Redis, Kafka, Eureka, Feign, Ribbon, Hytrix, Zull
+
+引导面试官去问自己知道的东西!!!
+

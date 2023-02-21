@@ -371,3 +371,50 @@
     9527 端口(默认)
 
     registry.cn-shenzhen.aliyuncs.com/mogublog/nginx
+
+> 2023年2月21日20:53:24
+
+1. 历史:
+
+    《计算机网络》
+    《操作系统》
+    《计算机组成原理》
+    《数据结构与算法》
+
+    1. 技术点更新
+
+    2. 挑选一个技术点突击学习(SQL优化)
+
+    Java核心:
+        1. Java基础, Java集合. -> 熟练掌握集合、反射、多线程等Java基础知识, 有编译过OpenJDK经验和阅读Java SDK源码习惯.
+        3. JVM -> 性能调优: -> 熟悉JVM、JMM, 包括内存模型, 垃圾回收机制, 了解其基本调优技巧并具备线上调优经验.
+        4. Java并发 -> JUC: -> 熟悉Java并发编程, 对Java的各种锁机制, 线程池机制, AQS等都有一定的研究并在项目中使用.
+
+    框架:
+        7. Spring
+        14. SpringCloud
+        8. Mybatis
+        15. SpringMVC
+
+    中间件:
+        5. MySQL
+        6. Redis
+        9. MQ -> Kafka
+        13. Tomcat
+
+    基础:
+        10. 计算机网络
+        11. 操作系统及计算机组成原理
+        16. 数据结构与算法
+        13. Linux
+
+    设计理论:
+        14. 设计模式
+        17. 软件开发流程
+        18. CAP
+
+    其他:
+
+        熟悉Docker, Jekins, Linux, 有Linux服务器项目部署经验, 对负载均衡、服务扩容有一定了解。
+        熟练使用IDEA, WebStrom, Xshell, Navicat, Rose, Git, Maven等常用开发工具(Maven 算是工具吗?)
+        熟悉HTML, CSS, JavaScript的使用, 了解Vue前端框架.
