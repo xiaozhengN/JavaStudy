@@ -220,3 +220,31 @@
     blog-study
 
     src-study
+
+> 2023年3月25日04:38:44
+
+1. 历史1:
+
+    《二进制归档流程的培训》
+
+    为什么要做这件事?
+
+    他们总是不去做话题的总结者?  => 我觉得有时候需要去终结一个话题
+
+> 2023年3月26日11:14:30
+
+1. 历史1:
+
+    ChatGPT
+
+    AI
+
+    如何使用ChatGPT 4.0 模型
+
+    decorations
+
+    display borderless window
+
+    liyupi/yu-auto-reply:AI自动回复工具
+
+    git clone https://gitee.com/xiaozhengN/yu-auto-reply.git

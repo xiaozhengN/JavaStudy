@@ -1,0 +1,3 @@
+decorations
+
+display borderless window
