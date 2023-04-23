@@ -1,13 +1,89 @@
-学习线路
+--  t_admin
+select * from t_admin A1;
 
-Learning circuit
+-- t_blog
+select * from t_blog A2;
 
-指导思想
+-- t_blog_sort
+select * from t_blog_sort A3;
 
-Guiding ideology
+-- t_blog_spider
+select * from t_blog_spider A4;
 
-提升计划
+-- t_category_menu
+select * from t_category_menu A5;
 
-个人的
+-- t_collect
+select * from t_collect A6;
 
-PersonalPromotionGuiding
+-- t_comment
+select * from t_comment A7;
+
+-- t_comment_report
+select * from t_comment_report A8;
+
+-- t_exception_log
+select * from t_exception_log A9;
+
+-- t_feedback
+select * from t_feedback A10;
+
+-- t_link
+select * from t_link A11;
+
+-- t_picture
+select * from t_picture A12;
+
+-- t_picture_sort
+select * from t_picture_sort A13;
+
+-- t_resource_sort
+select * from t_resource_sort A14;
+
+-- t_role
+select * from t_role A15;
+
+-- t_study_video
+select * from t_study_video A16;
+
+-- t_subject
+select * from t_subject A17;
+
+-- t_subject_item
+select * from t_subject_item A18;
+
+-- t_sys_dict_data
+select * from t_sys_dict_data A19;
+
+-- t_sys_dict_type
+select * from t_sys_dict_type A20;
+
+-- t_sys_log
+select * from t_sys_log A21;
+
+-- t_sys_params
+select * from t_sys_params A22;
+
+-- t_system_config
+select * from t_system_config A23;
+
+-- t_tag
+select * from t_tag A24;
+
+-- t_todo
+select * from t_todo A25;
+
+-- t_user
+select * from t_user A26;
+
+-- t_visitor
+select * from t_visitor A27;
+
+-- t_web_config
+select * from t_web_config A28;
+
+-- t_web_navbar
+select * from t_web_navbar A29;
+
+-- t_web_visit
+select * from t_web_visit A30;
