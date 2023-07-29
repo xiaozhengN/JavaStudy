@@ -1,4 +1,45 @@
-看完老师的课总结了代码和笔记有需要的自提
-vue3: https://github.com/Panyue-genkiyo/vue3-learning
-vue2依据脚手架:https://github.com/Panyue-genkiyo/vue-advance
-vue基础不依赖脚手架:https://github.com/Panyue-genkiyo/vue-learning
+ES6的解构（Destructuring assignment）是一种用于从数组或对象中提取值并赋给变量的语法。使用解构可以更方便、灵活地进行变量赋值操作，从而减少代码冗长度，提高可读性和可维护性。ES6中引入的解构有两种形式，分别是数组解构和对象解构。
+
+数组解构：
+
+可以通过使用`[]`括起来的方式从数组中提取值，并将这些值赋给变量。例如：
+
+```
+let arr = [1, 2, 3];
+let [a, b, c] = arr;
+console.log(a); // 1
+console.log(b); // 2
+console.log(c); // 3
+```
+
+对象解构：
+
+可以通过使用`{}`括起来的方式从对象中提取值，并将这些值赋给变量。例如：
+
+```
+let obj = {foo: 1, bar: 2};
+let {foo, bar} = obj;
+console.log(foo); // 1
+console.log(bar); // 2
+```
+
+对象解构也可以使用别名的方式：
+
+```
+let obj = {foo: 1, bar: 2};
+let {foo: a, bar: b} = obj;
+console.log(a); // 1
+console.log(b); // 2
+```
+
+除了数组和对象解构，ES6还支持剩余参数的解构(assign the rest of an array to a variable)，当需要获取某个数组的某些元素时，还可以使用剩余参数获取所有剩余的元素。例如：
+
+```
+let arr = [1,2,3,4];
+let [a, b, ...rest] = arr;
+console.log(a); // 1
+console.log(b); // 2
+console.log(rest); // [3,4]
+```
+
+需要注意的是，解构只是一种赋值操作，本身不会修改原数组或对象的值。

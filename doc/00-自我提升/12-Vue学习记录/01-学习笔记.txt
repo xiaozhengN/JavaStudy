@@ -1,0 +1,474 @@
+前端: 合适的时间, 发合适的请求, 将数据展示到合适的位置.
+
+P4: 0324
+
+前端插件: Live Servre    默认端口: 5500
+
+MVVM模型.
+
+
+灵感:
+
+1. 快速打开软件的工具?
+
+VSCode => 用户代码片段
+
+老师习惯:
+ scr =>
+<script type="text/javascript">
+...
+</script>
+
+v1 =>
+
+new Vue(
+{
+el: '#root',
+data: {
+...
+}
+}
+)
+
+新概念:
+
+1. 不可枚举 => 不可遍历
+
+2023年6月9日04:33:52:
+
+1. 电脑的键盘提示打开: KeyCastOW ON
+
+2. 控制台打开的快捷方式: Ctrl + Shift + i, 我是 F12
+
+2023年6月10日03:08:43
+
+1. 插件推荐:
+Vue3 Snippets 作者: hollotree
+
+2. 箭头函数:
+
+isHot: (newValue, oldValue) => {}
+vm.$watch('isHot', (newValue, oldValue) => {})
+
+3. 箭头函数和普通函数:
+
+普通: changeWeather() {}
+箭头: changeWeather:() => {}
+
+2023年6月11日03:34:01
+
+1. this.persons.unshift(p) => 从前面加入
+2. this.persons.push(p) => 从后面加入
+3. vscode: 授课需要用到的.  //#region  //#endregion
+4. 侦听器简写:
+new Vue(
+	{
+		el: '',
+		date: {...}
+		watch: {
+			// 完整写法: 侦听keyWord变化
+			keyWord: {
+				immediate: true,
+				handler(val) {...}
+			}
+		}
+
+	}
+)
+5. 侦听器简写:
+new Vue(
+	{
+		el: '',
+		date: {...}
+		watch: {
+			// 只有一个函数, 简写: 侦听keyWord变化
+			keyWord() {...}
+		}
+
+	}
+)
+6. 常规JS定时器:
+	setInterval(
+	() => {...}
+	, 1000);
+
+7. 自定义匿名函数可以搞一个用户自己的代码片段(因为很常用)
+	老师的习惯: df => () => {...}
+
+8. 前端JS关于数组操作的一个API:
+	// 第0个元素干掉, 替换成"打台球"
+	vm._data.student.hobby.splice(0, 1, '打台球')
+9. 操作数组时, 被VUE监视的7个API(响应式系统)
+	push(加到最后),
+	pop(删除最后),
+	shift(删除第一个),
+	unshift(往前面加一个),
+	splice(指定位置插入/删除/替换),
+	sort(排序),
+	reverse(反转)
+10. 一个之前在java中很少用的API:
+	// 0: 要操作的元素
+	// 1: 从0个开始删一个, 再插入一个
+	// '': 需要插入的对象
+11. 提升表单的交互性:
+	<form>
+		<label for="demo">账号: </label>
+		<input type="text" id="demo">
+	</form>
+
+	this.student.hobby.splice(0, 1, '开车')
+12. ES6里面, 形参默认值:
+new Vue(
+	{
+		el: '',
+		data: {...},
+		computed: {...},
+		methods: {...},
+		filters: {
+			timeFormater(value, str='YYYY年MM月DD日 HH:mm:ss') {...}
+		}
+	}
+)
+13. 属性选择的器:
+	<style>
+		[v-cloak] {
+			display:none;
+		}
+	</style>
+14. 这是JS语法层面的一个精简:
+
+	new Vue(
+		el: '',
+		data: {...},
+		directives: {
+			// 这个一般不会这样写, 太冗余了, 直接 big() {...}
+			big:function() {...}
+		}
+	)
+15. 打印层级结构: console.dir(a)
+16. 前端JS有太多细节了. HTMLElement 对象. console.log(a instanceof HTMLElement)
+17. 老师的习惯: div#root2 => <div id="root2"></div>
+18. 回调函数: 1. 我定义的函数, 2. 我没有自己去调用, 3. 最终又执行了.
+19. JS DOM操作基本功: document.querySelector('h2').innerText = 123
+20. ES6 模板字符串. `...`
+21. 判断是否为DOM元素(一般没啥用). console.log('', this.$el instanceof HTMLElement)
+
+> 2023年6月12日05:25:31
+1. 属于原生的DOM事件: <button @click="add">点我n+1</button>
+2. 组件名尽可能回避HTML中已有的元素名称, 已有的有哪些呢?
+
+> 2023年6月13日07:08:06
+1. 前端有没有基本数据类型这一说呢?
+2. 老师的习惯: csl => console.log('...');
+3. 提到: 全局事件总线
+4. 缔造?!
+
+> 2023年6月14日04:24:11
+1. 组件的定义: 实现界面, 局部功能的代码和资源集合叫组件.
+2. Vue开发插件: Vetur. 作者: Pine Wu
+3. ES6模块化
+4. 组件的暴露, export default Vue.extend({...}) => export default {...}
+5. ES6模块化的引入: import School from './School'
+6. <%= BASE_URL %> 指向的目录是: public 目录
+7. 渲染函数的演变(理解) render: h => h(App)
+	render(createElement) { return createElement('h1', '你好啊!')}
+	没有用到this, 改为箭头函数: render: (createElement) => {createElement('h1', '你好啊!')}
+	简单化: render: createElement => createElement(App)
+	形参用h代替, 简化: render: h => h(App)
+8. 有两种模块化: commonjs 和 ES6
+
+> 2023年6月15日08:07:31
+1. Ctrl + R 普通的刷新
+2. 组件间通信, 通过 ref 标签获取到组件的实力对象很有用.
+3. 引用<Student/> 底层, new VueComponent().. 所有组件不影响.
+
+> 2023年6月17日09:36:49
+1. AI绘画: 我喜欢的一个女孩, 黑色的披肩中长发, 大大的眼睛, 注视着镜头. 仿佛看着我一样. 嘴唇涂着红色的口红. 穿一件蓝色露脐短袖. 手上拿着头戴耳机, 似乎想给我戴上一样. 背着单肩包包, 牛仔裤.
+2.
+ES6中模块化中，暴露方式有以下两种：
+
+1. default：一个模块只能有一个默认导出。导出方式为`export default`。 => 默认暴露
+
+示例代码：
+
+```
+// person.js
+export default class Person {
+  constructor(name, age) {
+    this.name = name;
+    this.age = age;
+  }
+  sayHello() {
+    console.log(`Hello, my name is ${this.name} and I'm ${this.age} years old`);
+  }
+}
+
+// other.js
+import Person from './person';
+const person = new Person('Lucy', 18);
+person.sayHello();
+```
+
+2. named：一个模块可以有多个命名导出，这些导出需要被列在花括号中。导出方式为 `export { ... }`。  => 分裂暴露
+
+示例代码：
+
+```
+// person.js
+export class Person {
+  constructor(name, age) {
+    this.name = name;
+    this.age = age;
+  }
+  sayHello() {
+    console.log(`Hello, my name is ${this.name} and I'm ${this.age} years old`);
+  }
+}
+
+export const MESSAGE = 'Hello World!';
+
+// other.js
+import { Person, MESSAGE } from './person';
+const person = new Person('Lucy', 18);
+console.log(MESSAGE);
+person.sayHello();
+3. 灵感: 我也想搭建一个这样的机器人, 太好用了. 就和自己的生活管家一样. 还能去合法采集数据.
+   可以参考: https://guliucang.com/chatplus
+4. express koa 是什么?
+Express和Koa都是Node.js的Web开发框架，用于简化和加速Web应用程序的开发过程。下面简单介绍一下两个框架的特点：
+- Express: 是一个成熟的Web框架，拥有庞大的社区与生态系统，提供了各种工具和插件，可以轻松地构建Web应用程序。其API简单易用，可以快速完成多种任务，并且具有良好的文档和教程资源。
+- Koa: 是一个相对较新的Web框架，与Express类似，但基于更现代的JavaScript标准，更注重异步编程方式。它使用ES6中的协程（Generator函数）来实现异步工作流，并提供了丰富的中间件和插件，可以根据需要进行灵活的组合和定制。
+在实际开发中，根据项目需求和个人喜好选择合适的框架都是可以的。而 Express 和 Koa 相信都是比较好的选择。
+5. 编写样式, 其实也是一门单独的变成语言.
+	css less
+	除了 CSS 和 LESS，还有以下语言可以用于编写前端样式：
+	1. Sass（Syntactically Awesome StyleSheets）：Sass 是一种成熟的 CSS 预处理器，它扩展了 CSS，并增加了许多功能，如变量、嵌套和 Mixin 等。与 LESS 不同，Sass 采用的是缩进式的语法。Sass 可以编译成纯 CSS，但需要使用 Ruby 运行。
+	2. Stylus：Stylus 是一个灵活和可扩展的 CSS 预处理器，也采用了缩进式语法。与 Sass 和 LESS 不同，Stylus 支持自定义函数和变量作用域，并允许用户直接在 CSS 中使用 JavaScript 代码。
+	3. PostCSS：PostCSS 工具可以用于转换 CSS，将 CSS 代码转换为可以在不同浏览器中运行的代码。它不像 Sass 和 LESS 一样提供了额外的功能，而是提供了一组插件，可以在 CSS 中执行各种任务，如自动加前缀、压缩、转换变量等。
+	4. CSS-in-JS：CSS-in-JS 是一种将 CSS 代码嵌入 JavaScript 中的方式，以实现组件化的 CSS 样式。它通过使用 JavaScript 对象或函数生成 CSS 样式，可以实现更加灵活和可维护的样式代码。最常用的 CSS-in-JS 库包括 Styled Components、Emotion 和 Aphrodite 等。
+	需要注意的是，不同的前端样式语言有着不同的语法和语法特性，开发者应根据自身的需求和实际情况来选择适合的样式语言。
+6. less 可以写嵌套的样式:
+<style lang="less">
+	.demo {
+		backbround-color: pink;
+		.qwe {
+			font-size: 40px;
+		}
+	}
+</style>
+7. word 中还可以插入视频.
+8. 关于JS和Java的基本数据类型对比差异:
+	JavaScript 和 Java 中的基本数据类型有以下差别：
+	1. 数据类型名称：JavaScript 中的基本数据类型包括 Boolean、Number、String、Undefined 和 Null；而 Java 中的基本数据类型包括 boolean、byte、short、int、long、float、double 以及 char。
+	2. 数据类型大小：JavaScript 中的变量都是使用浮点数表示的，所以不会有整数类型。而 Java 中变量的大小是固定的，boolean 为 1 位，byte 为 8 位，short 和 char 为 16 位，int 和 float 为 32 位，double 和 long 为 64 位。
+	3. 数据类型转换：在 JavaScript 中，由于变量都是使用浮点数表示的，因此进行基本数据类型之间的转换规则与 Java 有一些不同。例如将数字类型转换成字符串类型时，JavaScript 中可以使用 String() 函数或者 toString() 方法，而 Java 中只能使用字符串连接符 +；将字符串类型转换成数字类型时，JavaScript 中可以使用 parseInt()、parseFloat() 函数或者 Number() 构造函数，而 Java 会抛出 NumberFormatException 异常。
+	4. 类型推断：在 JavaScript 中，变量的类型是动态推断的，即变量的类型由变量所储存的值的类型决定。而 Java 中，变量的类型必须在声明时就已经确定。
+	总的来说，JavaScript 和 Java 中的基本数据类型有很多相似之处，但在细节和使用上还是有一些差异的。
+9. 主键ID不用使用数字, ID 是有尽头的, 文件外发之前有遇到过. 精度不同导致的.
+10. 一个简单的案例, 简单提单了组件件通信的问题:
+	全局事件总线
+	消息订阅与发布
+	VUEX
+11. JS灵活的地方来了, 可以传递一个Function. 或则理解为传递一个方法.
+	JS中: 我不能把一个函数传递给MyHeader吗?
+	<MyHeader :receive="receive"/>
+	想传什么就传什么: 字符串, 布尔值, 数组, 对象, 函数 ...  (能不能理解万物皆对象呢? Object)
+12. VUE中 @click 和 @change 有什么区别?
+	总的来说，@click 用于绑定鼠标点击事件，@change 用于绑定表单元素的值发生改变时的事件，两者的使用场景是不同的。
+13. 我的目的不是疯狂的把这些功能给怼出来, 而是通过这个案例能够引出更多的东西和思考.
+14. 通过 props 传值, 原则上是不可信修改, 上层组件的值的. 但是 VUE 这里只做了浅层度的监视.
+15. 老师的快捷键习惯: vModel => v-model ===> v-model="tode.done"
+16. 学过ES6, 那么你就应该用 reduce 去处理. 这个 JDK8 应该也有.
+17. 前端常用的2个函数, 对JSON的处理.
+	JSON.stringify(p)
+	JSON.parse(result) => result 为null, 结果也是null.  一个成熟的方法不能太容易接口500吧.
+18. || 的另外一种用法. return {todos:JSON.parse(localStorage.getItem('todes')) || []}
+19. 这个小案例中, 用到了深度监视:
+	watch: {
+		todes: {
+			deep: true,
+			hadler(value) {
+				localStorage.setItem('todes', JSON.stringify(value))
+			}
+		}
+	}
+> 2023年6月19日02:47:45
+1. VUE脚手架构建的项目中, babel.config.js 是啥?
+2. 绑定事件. <Student v-on:atguigu="demo">
+给Student这个组件的实例对象VC, 绑定了一个事件, 事件的名称叫: aiguigu, 如果以后有人触发了这个事件, 那么, demo函数就会被调用.
+3. v-on 绑定事件的简写 => <Student @atguigu="getStudentName"/>
+4. 当事件触发的时候调用.
+	mouted() {
+		// 当"atguigu"事件被触发的时间调用.
+		this.$refs.student.$on('atguigu', this.getStudentName)
+	}
+5. ES6的基础: 前端的可变参数.
+	methods: {
+		// 可以接受多个参数
+		getStudentName(name, ...params) {
+			console.log('App收到了学生名: ', name, params)
+		}
+	}
+> 2023年6月21日04:33:31
+1. 组件的销毁: 就是我们将路由的时候, 你切走了, 这个组件就被销毁掉了. 那么组件身上的自定义事件就失效了.
+2. 插值语法取值, 需要先定义属性: data, props, computed
+> 2023年6月22日10:39:34
+1. 给组件绑定一个原生的事件: <Student ref="student" @click.native="show"/>
+2. 安装全局事件总线:
+	new Vue({
+		el: '#app',
+		render: h => h(App),
+		beforeCreate() {
+			Vue.prototype.$bus = this
+		},
+	})
+3. 关于事假的销毁:
+	// 与其不销毁, 也不要全部销毁
+	beforeDestroy() {
+		this.$bus.$off('hello')
+	}
+4. 在下一次DOM更新结束后执行指定的回调
+	this.$nextTick(function() {
+		this.$refs.inputTitle.focus()
+	})
+5. 如果不借助上面的API, 也可以这样去解决:
+	setTimeout(() => {
+			this.$refs.inputTitle.focus()
+		}, 200
+	)
+6. 写一个简单的动画, 定义关键帧:
+	<styles scoped>
+
+		.come {
+			animation: atguigu 1s;
+		}
+
+		.go {
+			animation: atguigu 1s reverse;
+		}
+
+		@keyframes atguigu {
+			from {
+				transform: translateX(-100px);
+			}
+			to {
+				transform: translateX(0px);
+			}
+		}
+	</style>
+7. VUE实现的动画.
+	<template>
+		<transition>
+			<h1 v-show="isShow"> 你好啊!</h1>
+		</transition>
+	</template>
+
+	<style scoped>
+		.v-enter-active {...}
+		.v-leave-active {...}
+		@keyframs atguigu {..}
+	</style>
+8. <transition> 还可以去指定name属性, 对应的样式也需要去修改.
+9. 让一个标签有某个属性. 其实有简写方式.
+	<button x> => 那么就有x属性了.
+> 2023年6月23日03:25:14
+1. 一个开源的动画样式库: Animate.css
+2. Opacity: 不透明度
+3. transition: 过渡
+4. appear: 出现
+5. 前端的代理配置:
+	module.exports = {
+		devServer: {
+			proxy: {
+				'/zbz': {// 匹配所以以 'zbz' 开头的路径
+					target: 'http://127.0.0.1:5000', // 代理目标的基础路径
+					changeOrigin: true, // 代理服务器会隐私本身的端口号
+					pathRewrite: {'^/zbz': ''}
+				},
+				'/api': {
+					target: 'http://127.0.0.1:5000', // 代理目标的基础路径
+					changeOrigin: true,
+				},
+			}
+		}
+	}
+6. 老师的快捷习惯(也可能是通用的插件习惯):
+	<v =>
+	<template>
+	</template>
+
+	<script>
+		exprot default {...}
+	</script>
+
+	<style>
+	</style>
+7. asstes: 一般放静态资源目录
+8. .eot 一般是字体文件.
+9. 前端代码编写方式:
+	a. 静态组价
+	b. 动态组件
+10. 这个是不对的: axios.get('https://api/github.com/search/users?q=this.keyWord')
+	ES6里面的模板字符串: axios.get(`https://api/github.com/search/users?q=${this.keyWord}`)
+	axios.get(`https://api.github.com/search/users?q=${this.keyWord}`).then(
+		response => {
+			console.log('请求成功了', response.data)
+		},
+		error =>  {
+			console.log('请求失败了', error.message)
+		}
+	)
+11. 这里为了不破坏数据结构, 这个可以这样去写.
+	this.info = {...this.info, ...dataObj}
+	this.info: 这个是原来的
+	dataObj: 这个是新的
+12. 发送Ajax请求:
+	1. xhr: XMLHttpResponse
+	2. jQuery
+	3. axios
+	4. fetch
+	5. vue-resource
+13. 插槽: slot
+14. 解构赋值: ES6 的基本语法
+	ES6 的解构赋值是通过模式匹配来进行赋值的一种语法。 它提供了一个简洁的方式来从数组或对象中提取数据并赋值给变量。
+	以下是一些示例：
+	- 数组解构
+	- 对象解构
+	- 嵌套解构
+	- 默认值
+	- 函数参数解构
+	可以看到，解构赋值给程序员提供了一个更加简洁、灵活的表达式，有助于我们写出更加优雅简洁，可读性强的代码。
+15. 多光标操作.
+> 2023年6月24日02:31:48
+1. Mutations 是什么意思?   => “状态修改”、“状态变更”
+2. Dispatch 是什么意思?
+> 2023年6月25日02:14:32
+1. ES6写法, 对象解构:
+	...mapState({he:'sum', xuexiao:'school', xueke:'subject'}),
+2. NaN =  Not a Number
+3. 前端绑定一个方法时, 不一定有(), 如果没有一般是默认传入一个 event
+4. 集中式状态管理.  React => redux   Vue => vuex
+5. vuex: 解决共享数据的问题.
+	老师讲得目录: src/store/index.js
+6. 讲课不就那么回事吗? 老师去看文档, 把文档里面的东西翻译一下, 调整一下顺序, 给大家讲出来.
+7. https://api.uixsj.cn/hitokoto/get?type=social
+> 2023年6月29日05:23:18
+1. ES6解构赋值, 连续的解构赋值:
+props: function($route) {...} => props($route) {...} => props({query:{id, title}}){...}
+props($route) {
+	return {
+		id: $route.query.id,
+		title: $route.query.title
+	}
+}
+> 2023年7月9日13:47:50
+1. JS里面有点像三元运算的东西:
+document.title = to.meta.title || '硅谷系统'
+2. 直接用node express搭建一个微型的服务器, 牛逼.
+> 2023年7月20日02:02:50
+1. 安装一个UI插件, 这个是开发依赖. 看不懂, 去看 Webpack 教程. npm install babel-plugin-component -D
+2. element.eleme.cn
+> 2023年7月22日02:46:33
+1. 前端 async .then  promise  await 的使用场景和含义.
+2. await 语句必须配合 async 函数
+3. 老师的这个画笔工具真的好好用.
