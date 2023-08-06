@@ -6,4 +6,5 @@ OpenAI 账号怎么申请
 
 3. 个人公众号，以订阅号为例
 
+API KEY:
 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
