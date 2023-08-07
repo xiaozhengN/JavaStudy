@@ -3,7 +3,8 @@
 2. 熟悉JVM、JMM, 包括内存模型, 垃圾回收机制, 了解其基本调优技巧并具备线上调优经验.
 3. 熟悉Java并发编程, 对Java的各种锁机制, 线程池机制, AQS等都有一定的研究并在项目中使用.
 4. TODO 这里整理一下框架相关的知识点, Spring, SpringMVC, Mybatis, SpringCloud
-5. TODO 这里整理一下数据库相关的知识点, MySQL, Redis
+5. 熟练使用MySQL、Oracle等关系型数据库, 了解MySQL底层原理, 有MySQL优化经验.
+5. // TODO 补充Redis相关经验.
 6. TODO 这里整理一下常见中间件相关的知识点, Kafka, Eureka, Feign, Ribbon, Hytrix, Zull
 7. 熟悉Docker, Jekins, Linux, 有Linux服务器项目部署经验, 对负载均衡、服务扩容有一定了解。
 8. 熟练使用IDEA, WebStrom, Xshell, Navicat, Rose, Git, Maven等常用开发工具(Maven 算是工具吗?)
