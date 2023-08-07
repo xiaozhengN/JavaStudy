@@ -1,15 +1,148 @@
-一、技术栈方面(// TODO 不能这样写技术栈, 这个工作1~2年的写法):
-1. 熟练掌握集合、反射、多线程等Java基础知识, 有编译过OpenJDK经验和阅读Java SDK源码习惯.
-2. 熟悉JVM、JMM, 包括内存模型, 垃圾回收机制, 了解其基本调优技巧并具备线上调优经验.
-3. 熟悉Java并发编程, 对Java的各种锁机制, 线程池机制, AQS等都有一定的研究并在项目中使用.
-4. TODO 这里整理一下框架相关的知识点, Spring, SpringMVC, Mybatis, SpringCloud
-5. 熟练使用MySQL、Oracle等关系型数据库, 了解MySQL底层原理, 有MySQL优化经验.
-5. // TODO 补充Redis相关经验.
-6. TODO 这里整理一下常见中间件相关的知识点, Kafka, Eureka, Feign, Ribbon, Hytrix, Zull
-7. 熟悉Docker, Jekins, Linux, 有Linux服务器项目部署经验, 对负载均衡、服务扩容有一定了解。
-8. 熟练使用IDEA, WebStrom, Xshell, Navicat, Rose, Git, Maven等常用开发工具(Maven 算是工具吗?)
-9. 熟悉HTML, CSS, JavaScript的使用, 了解Vue前端框架.
-二、性格方面:
-1. 为人友善, 乐于分享、交流、沟通. 有团队合作精神, 能和团队一起成长.
-2. 工作认真负责、细心、有条理、积极性高, 可接受工作加班, 勇于挑战高强度工作.
-3. 勇于探索和学习新技术, 自学能力强.
+@[TOC](常见单词拼错错误纠正)
+
+# 前置说明
+
+单词太多啦, 我这里只列表我个人见得比较多的, 我没见过就不列举了. 有错误或想补充的可以提交在原仓库提交Pull Request. 😁
+
+# 参考地址
+
+GitHub地址: https://github.com/rd2coding/Awesome-Tech-Words
+Gitee地址: https://gitee.com/xiaozhengN/Awesome-Tech-Words
+
+# 后端开发相关
+
+|     规范书写     |         不合适拼写举例          |                     备注                     |
+|:------------:|:------------------------:|:------------------------------------------:|
+|   RESTful    |     Restful、RestFul      |    REST=Representational State Transfer    |
+|    Spring    |          spring          |                                            |
+|  Spring MVC  |   SpringMVC、Springmvc    |              Spring MVC中间有空格！              |
+| Spring Boot  |  Springboot、SpringBoot   |             Spring Boot中间有空格！              |
+| Spring Cloud | Springcloud、SpringCloud  |             Spring Cloud中间有空格！             |
+|     OOP      |           oop            |        Object Oriented Programming         |
+|      PO      |            po            |             Persistant Object              |
+|     POJO     |           pojo           |         Plain Ordinary Java Object         |
+|     Web      |         web、WEB          |                                            |
+|     Java     |        JAVA、java         |                                            |
+|     JVM      |         jvm、Jvm          |            Java Virtual Machine            |
+|      GC      |            gc            |             Garbage Collection             |
+|   Java EE    |         java ee          |             Enterprise Edition             |
+|   Java SE    |         java se          |              Standard Edition              |
+|    Golang    |          golang          |                                            |
+|    Python    |          python          |                                            |
+|    Linux     |          linux           |                                            |
+|   Runtime    |         runtime          |                                            |
+|     DNS      |           dns            |          Domain Name System 域名系统           |
+|      DI      |            di            |         Dependency Injection 依赖注入          |
+|      DB      |            db            |                  DataBase                  |
+|     ACID     |           acid           | Atomicity+Consistency+Isolation+Durability |
+|     DDL      |           ddl            |      Data Definition Language 数据定义语言       |
+|     DML      |           dml            |     Data Manipulation Language 数据操纵语言      |
+|    MySQL     |          mysql           |                                            |
+|    SQLite    |          sqlite          |                                            |
+|  SQLServer   |   sqlserver、SQLserver    |                                            |
+|    NoSQL     |       nosql、NOSQL        |             NoSQL=Not Only SQL             |
+|     JDBC     |        Jdbc、jdbc         |         Java Database Connectivity         |
+|     ORM      |           orm            |     Object/Relational Mapping 对象/关系映射      |
+|     JPA      |           Jpa            |            Java Persistence API            |
+|   MyBatis    |     mybatis、Mybatis      |                                            |
+| MyBatis-Plus | MyBatisPlus myBatis-plus |                                            |
+|    Maven     |       maven、MAVEN        |                                            |
+|    Redis     |          redis           |                                            |
+|   MongoDB    |         mongoDB          |                                            |
+|      MQ      |            mq            |               Message Queue                |
+|   RabbitMQ   |         rabbitMQ         |                                            |
+|   RocketMQ   |         rocketMQ         |                                            |
+|   ActiveMQ   |         activeMQ         |                                            |
+|    Netty     |          netty           |                                            |
+|     gRPC     |           grpc           |                                            |
+|    Dubbo     |          dubbo           |                                            |
+|     JSON     |           Json           |         JavaScript Object Notation         |
+|     JWT      |           jwt            |               JSON Web Token               |
+|     XML      |           Xml            |         Extensible Markup Language         |
+|     API      |           Api            |     Application Programming Interface      |
+|   Jenkins    |        jk、jenkins        |                                            |
+|    Docker    |          docker          |                                            |
+|     UML      |           Uml            |         Unified Modeling Language          |
+|     SOA      |           Soa            |       Service Oriented Architecture        |
+|     MVC      |           Mvc            |           Model–View–Controller            |
+|     MVVM     |           Mvvm           |            Model-View-ViewModel            |
+|     MVCC     |           mvcc           |  MySQL: Multi-Version Concurrency Control  |
+|     MVP      |           Mvp            |            Model-View-Presenter            |
+|   持续更新中...   |            -             |                     -                      |
+
+---
+
+# 前端开发相关
+
+|    规范书写    |           不合适拼写举例           |                                       备注                                        |
+|:----------:|:---------------------------:|:-------------------------------------------------------------------------------:|
+|    HTTP    |          Http、http          |                          Hyper Text Transfer Protocol                           |
+|   HTTPS    |         https、Https         |              Hyper Text Transfer Protocol over SecureSocket Layer               |
+|    DOM     |             dom             |                              Document Object Model                              |
+| JavaScript | javascript、Javascript、js、JS |
+|    CSS     |           Css、css           |                             Cascading Style Sheets                              |
+|    HTML    |          Html、html          |                           Hyper Text Markup Language                            |
+|   jQuery   |        jquery、JQuery        |                                                                                 |
+| Bootstrap  |          bootstrap          |                                                                                 |
+|  Node.js   |     node、NodeJS、nodejs      |                                                                                 |
+|   Vue.js   |       vue、VUE、vue.js        |                                                                                 |
+|   React    |            react            |                                                                                 |
+|  Angular   |           angular           |                                                                                 |
+| TypeScript |         typescript          |                      a “flavor” or “variant” of JavaScript                      |
+|   Lodash   |           lodash            | A modern JavaScript utility library delivering modularity, performance & extras |
+|  webpack   |           Webpack           |                              static module bundler                              |
+|    Vite    |            vite             |                                   build tool                                    |
+|   Babel    |            babel            |                   The compiler for next generation JavaScript                   |
+| Ant Design |         ant design          |           An enterprise-class UI design language and React UI library           |
+|  Element   |           element           |                        a Vue 2.0 based component library                        |
+|  持续更新中...  |              -              |                                        -                                        |
+
+---
+
+# 客户端开发相关
+
+|      规范书写      |      不合适拼写举例      | 备注  |
+|:--------------:|:-----------------:|:---:|
+|      App       |      APP、app      |     |
+|     iPhone     |      iphone       |     |
+|      iOS       |      ios、IOS      |     |
+|    Android     |      android      |     |
+|    持续更新中...    |         -         |  -  |
+
+---
+
+# 大数据/云计算相关
+
+|     规范书写      |            不合适拼写举例             |               备注               |
+|:-------------:|:------------------------------:|:------------------------------:|
+|    Hadoop     |             hadoop             |                                |
+|     HDFS      |           hdfs、Hdfs            | Hadoop Distributed File System |
+|     HBase     |          hbase、Hbase           |                                |
+|     Hive      |              hive              |                                |
+|     Yarn      |              yarn              |                                |
+|     Kafka     |             kafka              |                                |
+|   ZooKeeper   |          zookeeper、zk          |                                |
+|     Flink     |             flink              |                                |
+| Elasticsearch | elasticsearch、ElasticSearch、es |                                |
+|    Kibana     |             kibana             |                                |
+|  Kubernetes   |              k8s               |            官方简写为K8s            |   |
+|   持续更新中...    |               -                |               -                |
+
+---
+
+# 工具或软件相关
+
+|        规范书写        |      不合适拼写举例       |           备注            |
+|:------------------:|:------------------:|:-----------------------:|
+|        SVN         |        svn         |       Subversion        |
+|        Git         |      GIT、git       |                         |
+|       GitHub       |   github、Github    |                         |
+|       Gitee        |    GitEE、gitEE     |     官网帮助文档是: Gitee      |
+|   Intellij IDEA    | intellij idea、idea |                         |
+|      Eclipse       |      eclipse       |                         |
+|     MyEclipse      |     myeclipse      |                         |
+|      Postman       |  postman/PostMan   |                         |
+| Visual Studio Code |       vscode       |                         |
+|        Vim         |        vim         |                         |
+|   Makefile/CMake   |   makefile/cmake   |                         |
+|      持续更新中...      |         -          |            -            |
