@@ -1,0 +1,71 @@
+> 2023年8月9日23:24:08
+1. 学习:
+
+    4. TODO 这里整理一下框架相关的知识点, Spring, SpringMVC, Mybatis, SpringCloud
+
+    熟练使用Spring Boot、Spring, Spring Cloud, MyBatis-Plus等主流框架. 能独立完成模块功能开发. 阅读过开源项目Spring源码.
+
+    Spring相关的面试题:
+
+    灵感:
+    1. 是否需要阅读Spring源码呢?
+    2. 阿尔萨斯
+    3. Eclipse内存分析工具
+
+    4. TODO 这里整理一下框架相关的知识点, Spring, SpringMVC, Mybatis, SpringCloud
+
+    熟练使用Spring Boot、Spring, Spring Cloud, MyBatis-Plus等主流框架. 能独立完成模块功能开发. 阅读过开源项目Spring源码.
+
+    脏读/幻读/不重复读
+
+    ACID
+    1. 原子性(都成功或都失败)
+    2. 一致性(最终一致性是目的)
+    3. 隔离性(隔离级别)
+    4. 持久性(日志体系)
+
+    隔离级别:
+    1. 读未提交
+    2. 读已提交(Oracle默认隔离级别)
+    3. 可重复读(MySQL默认隔离级别)
+    4. 串行化
+
+    灵感:
+    SPI 机制是什么?
+
+    // TODO 有一个仓库. 有一个存仓存放了很多编程常用的单词
+
+    索引下推: index condition pushdown (ICP)
+
+    // TODO 怎么用Java代码加一个读锁? (规避不可重复读的问题. )
+
+> 2023年8月17日22:03:34
+
+1. 历史:
+
+    找工作需要运气: 王家湾, 到这里上班.
+
+> 2023年8月19日19:35:22
+
+1. 历史1:
+
+    # 一个java项目
+    curl -O https://arthas.aliyun.com/math-game.jar
+    java -jar math-game.jar
+
+    # 下载并运行工具
+    curl -O https://arthas.aliyun.com/arthas-boot.jar
+    java -jar arthas-boot.jar
+
+    Gogle: 密码
+    1qaz@WSX,.
+    或
+    3edc$RFV,.
+
+    163邮箱:
+    zheng930824
+
+    要改名字
+    James Tiibor
+
+    18154245470@189.cn
