@@ -69,3 +69,38 @@
     James Tiibor
 
     18154245470@189.cn
+
+> 2023年8月23日23:40:18
+
+1. 历史1:
+
+    win11 激活.
+
+    1. 快捷打开软件的方式. 可以不用第三方软件. 自定义自己的习惯.
+
+    在cmd中输入下列命令
+
+    slmgr /kms.pub
+
+    // TODO
+    1. notpad++ 常用快捷方式处理.
+
+    KMS
+    小马激活
+    // Win11 激活
+    1. 参考: https://www.bilibili.com/video/BV1TL4y1B7iz
+    2. 很简单的3个命令就激活了(2023年8月20日22:21:10正常激活):
+        1.slmgr /ipk W269N-WFGWX-YVC9B-4J6C9-T83GX
+        2.slmgr /skms kms.03k.org
+        3.slmgr /ato
+    3. 在评论区找的.
+
+    OBS录制的视频模糊的问题:
+    1. 调整一下参数就行.
+
+    BetterIntelliJ
+
+    1. Maven 仓库配置
+    2. Git 下载
+
+    截图工具
