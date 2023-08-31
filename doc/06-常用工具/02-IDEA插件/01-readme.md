@@ -10,6 +10,8 @@
 ## 日志着色
     
 ## JSON转实体类(这个版本需要更新)
+
+https://github.com/mars-men/GsonFormatPlus
     
 ## 括号配对
     
