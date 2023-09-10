@@ -1,0 +1,34 @@
+> 2023年9月10日20:30:56
+
+1. 历史1:
+
+个人微信公众号接入ChatGPT
+
+背景:
+	想自己使用ChatGPT, 不去使用别人的第三方平台的东西.
+
+初步分析:
+	a. 微信公众号, 又自动回复的功能.
+	b. 问题转发给ChatGPT
+	c. 答案返回给微信公众号(调用接口, 这样的项目很多)
+
+效果演示:
+	a. 发送消息可以自动回复
+
+参考博客:
+	a. https://www.techxiaofei.com/post/chatgpt/wechat_mp
+
+消费:
+	a. 海外服务器: https://billing.raksmart.com/whmcs/clientarea.php?action=productdetails&id=229142
+	b. 注册OpenAI账号(API Key): https://platform.openai.com/
+	c. 接受短息的平台: https://sms-activate.org/cn/freePrice#activation
+
+反思与总结:
+	a. 其实意义不太大, 我也不行做引流, 这啥玩意的.
+	b. 国内也有很多大公司出品的OpenAI工具, 感觉还可以.
+	c. 作为一次学习经历, 我觉得还不错.
+
+
+灵感:
+
+	a. 公司的nodepad++不能侧向滑动, 真的是坑呀.
