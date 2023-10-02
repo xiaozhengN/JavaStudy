@@ -1,15 +1,37 @@
-一、技术栈方面
-1. 熟练掌握集合、反射、多线程等Java基础知识, 有编译过OpenJDK经验和阅读Java SDK源码习惯.
-2. 熟悉JVM、JMM, 包括内存模型, 垃圾回收机制, 了解其基本调优技巧并具备线上调优经验.
-3. 熟悉Java并发编程, 对Java的各种锁机制, 线程池机制, AQS等都有一定的研究并在项目中使用.
-4. 熟练使用Spring Boot、Spring, Spring Cloud, MyBatis-Plus等主流框架. 能独立完成模块功能开发. 阅读过开源项目Spring源码.
-5. 熟练使用MySQL、Oracle等关系型数据库, 了解MySQL底层原理, 有MySQL优化经验.
-6. // TODO 补充Redis相关经验.
-7. TODO 这里整理一下常见中间件相关的知识点, Kafka, Eureka, Feign, Ribbon, Hytrix, Zull
-8. 熟悉Docker, Jekins, Linux, 有Linux服务器项目部署经验, 对负载均衡、服务扩容有一定了解。
-9. 熟练使用IDEA, WebStrom, Xshell, Navicat, Rose, Git, Maven等常用开发工具(Maven 算是工具吗?)
-10. 熟悉HTML, CSS, JavaScript的使用, 了解Vue前端框架.
-二、性格方面:
-1. 为人友善, 乐于分享、交流、沟通. 有团队合作精神, 能和团队一起成长.
-2. 工作认真负责、细心、有条理、积极性高, 可接受工作加班, 勇于挑战高强度工作.
-3. 勇于探索和学习新技术, 自学能力强.
+Spring Cloud Alibaba
+Spring Cloud Gateway
+Spring Cloud Config
+Spring Cloud OpenFeign
+Spring Cloud Sleuth
+Spring Cloud Netflix
+
+
+Spring Cloud Azure
+Spring Cloud for Amazon Web Services
+Spring Cloud Bus
+Spring Cloud Circuit Breaker
+Spring Cloud CLI
+Spring Cloud for Cloud Foundry
+Spring Cloud - Cloud Foundry Service Broker
+Spring Cloud Commons
+
+Spring Cloud Connectors
+Spring Cloud Consul
+Spring Cloud Contract
+Spring Cloud Function
+
+Spring Cloud GCP
+Spring Cloud Kubernetes
+
+Spring Cloud Open Service Broker
+
+Spring Cloud Pipelines
+Spring Cloud Security
+Spring Cloud Skipper
+
+Spring Cloud Stream
+Spring Cloud Stream Applications
+Spring Cloud Task
+Spring Cloud Vault
+Spring Cloud Zookeeper
+Spring Cloud App Broker

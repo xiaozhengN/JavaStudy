@@ -1,0 +1,7 @@
+1. 如何就让Docker 应用的日志目录
+
+96db842ab34c
+
+https://blog.csdn.net/qq_39218530/article/details/109718891
+
+cd /var/lib/docker/containers/96db842ab34c/
