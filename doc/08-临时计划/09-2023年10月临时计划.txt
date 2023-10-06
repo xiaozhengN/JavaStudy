@@ -1,0 +1,105 @@
+> 2023年10月3日09:32:09
+
+    1. 历史1:
+
+    1. Spring 面试题学习.
+
+    Spring允许有相同名字的Bean吗?
+
+    1. 单例Bean是单例模式吗?
+
+    灵感:
+    1. 打字练习
+
+> 2023年10月4日14:12:02
+
+1. 历史1:
+
+    有激情可以做一期视频记录一下: 追求心仪的女孩子
+
+    需求: 把一个33G的视频文件, 切分成多个3.9G的视频, 分别输出到指定的目录中, 怎么用Python实现?
+    需要满足如下几个细节:
+    1. 源文件目录在这里: E:\18-文件持久存储\01-OBS\CutterBefore\test_video.mkv
+    2. 我希望切割后的文件存放在这里: E:\18-文件持久存储\01-OBS\CutterAfter
+    3. 可以直接通过main方法运行
+
+
+    操作系统信息:
+    版本	Windows 11 专业版
+    版本	22H2
+    安装日期	‎2023/‎8/‎20
+    操作系统版本	22621.2283
+    体验	Windows Feature Experience Pack 1000.22662.1000.0
+
+    Python版本:
+    Python 3.11.4
+
+    OBS 单个文件超过一个阈值, 自动切片.
+
+2. 历史2:
+
+    超大视频如何优雅切片
+
+    # 背景
+
+    有一次录屏产生了一个大小为33G的文件, 我想把他上传到B站, 但是B站最大只支持4G. 无法上传, 因此做了一个简单的探索.
+
+    # 质疑与思考
+
+    a. 有没有一个工具或一个程序协助我做分片呢?
+
+    # 尝试
+
+    a. 必剪 => 有大小限制, 添加素材加不进去(而且报错信息也提示的不对)
+    b. PR => 没有尝试, 之前试过, 好像不支持mkv视频格式
+    c. Weeny Free Video Cutter => 读取视频没有成功, 也可能是很慢
+    d. Clideo => 在线剪辑, 只支持500M
+
+    # 最终方案
+
+    FFMPEG
+
+    以下是模板代码
+    ffmpeg -ss [start] -i [input] -to [end] -c copy [output]
+    [start] 此处为开始时间
+    [input] 为视频文件地址
+    [end] 结束时间
+    [output] 处理后的视频名字和地址
+
+    # 参考博客
+
+    https://blog.csdn.net/weixin_48670670/article/details/127264662
+
+    # 例子
+
+    ffmpeg -ss 00:00:00 -i E:\18-文件持久存储\01-OBS\CutterBefore\org.mkv -to 01:00:00 -c copy E:\18-文件持久存储\01-OBS\CutterAfter\cut1.mkv
+    ffmpeg -ss 01:00:00 -i E:\18-文件持久存储\01-OBS\CutterBefore\org.mkv -to 01:00:00 -c copy E:\18-文件持久存储\01-OBS\CutterAfter\cut2.mkv
+    ffmpeg -ss 02:00:00 -i E:\18-文件持久存储\01-OBS\CutterBefore\org.mkv -to 01:00:00 -c copy E:\18-文件持久存储\01-OBS\CutterAfter\cut3.mkv
+    ffmpeg -ss 03:00:00 -i E:\18-文件持久存储\01-OBS\CutterBefore\org.mkv -to 01:00:00 -c copy E:\18-文件持久存储\01-OBS\CutterAfter\cut4.mkv
+    ffmpeg -ss 04:00:00 -i E:\18-文件持久存储\01-OBS\CutterBefore\org.mkv -to 01:00:00 -c copy E:\18-文件持久存储\01-OBS\CutterAfter\cut5.mkv
+    ffmpeg -ss 04:00:00 -i E:\18-文件持久存储\01-OBS\CutterBefore\org.mkv -to 00:30:00 -c copy E:\18-文件持久存储\01-OBS\CutterAfter\cut5_1.mkv
+    ffmpeg -ss 04:30:00 -i E:\18-文件持久存储\01-OBS\CutterBefore\org.mkv -to 00:30:00 -c copy E:\18-文件持久存储\01-OBS\CutterAfter\cut5_2.mkv
+    ffmpeg -ss 05:00:00 -i E:\18-文件持久存储\01-OBS\CutterBefore\org.mkv -to 00:30:00 -c copy E:\18-文件持久存储\01-OBS\CutterAfter\cut5_3.mkv
+
+> 2023年10月5日15:47:34
+
+1. 历史1:
+
+    ffmpeg -ss 00:00:00 -i E:\18-文件持久存储\01-OBS\CutterBefore\org.mkv -to 01:20:00 -c copy E:\18-文件持久存储\01-OBS\CutterAfter\cut2.mkv
+
+    灵感:
+
+    1. IDEA 新建类怎么自动生成注释, 有没有好的模板发给我一下?
+
+    File Header
+
+> 2023年10月6日11:13:30
+
+1. 历史1:
+
+    灵感:
+
+    面试题录制:
+    https://blog.csdn.net/xiaozhengN/article/details/133579796
+
+    意图图示有一个思维导图也可以录制:
