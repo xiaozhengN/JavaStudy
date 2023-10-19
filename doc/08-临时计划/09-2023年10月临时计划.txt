@@ -72,7 +72,7 @@
 
     # 例子
 
-    ffmpeg -ss 00:00:00 -i E:\18-文件持久存储\01-OBS\CutterBefore\org.mkv -to 01:00:00 -c copy E:\18-文件持久存储\01-OBS\CutterAfter\cut1.mkv
+    ffmpeg -ss 00:00:20 -i E:\18-文件持久存储\01-OBS\CutterBefore\org.mkv -to 00:20:00 -c copy E:\18-文件持久存储\01-OBS\CutterAfter\cut1.mkv
     ffmpeg -ss 01:00:00 -i E:\18-文件持久存储\01-OBS\CutterBefore\org.mkv -to 01:00:00 -c copy E:\18-文件持久存储\01-OBS\CutterAfter\cut2.mkv
     ffmpeg -ss 02:00:00 -i E:\18-文件持久存储\01-OBS\CutterBefore\org.mkv -to 01:00:00 -c copy E:\18-文件持久存储\01-OBS\CutterAfter\cut3.mkv
     ffmpeg -ss 03:00:00 -i E:\18-文件持久存储\01-OBS\CutterBefore\org.mkv -to 01:00:00 -c copy E:\18-文件持久存储\01-OBS\CutterAfter\cut4.mkv
@@ -103,3 +103,19 @@
     https://blog.csdn.net/xiaozhengN/article/details/133579796
 
     意图图示有一个思维导图也可以录制:
+
+> 2023年10月15日09:08:21
+
+1. 历史1:
+
+    可以做一个视频:
+    https://blog.csdn.net/xiaozhengN/article/details/133610536
+
+    IDEA 显示 Cannot find declaration to go to, Ctrl + 鼠标左键为什么不能跳到指定的类?
+
+    gradle-wrapper.properties 怎么配置本地 distributionUrlpad
+
+    ffmpeg -ss 00:00:00 -i E:\18-文件持久存储\01-OBS\CutterBefore\org.mkv -to 01:00:00 -c copy E:\18-文件持久存储\01-OBS\CutterAfter\cut1.mkv
+
+
+
