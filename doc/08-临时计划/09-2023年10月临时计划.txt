@@ -150,4 +150,112 @@
     1. 面试题评价:
     2. 自己的语言:
 
+> 2023年10月23日22:24:34
 
+1. 运维:
+
+2. 开发:
+
+3. 历史:
+
+    了解一个产品, 可以从几个方面去了解了.
+
+    比如MYSQL这个产品:
+
+    1. 是什么? => 简单认识: 已一款开源的数据库产品.
+
+    2. 怎么实现的? => 原理
+
+        2.1 这个可以拆分成很细.
+
+> 2023年10月24日21:47:43
+
+1. 历史1:
+
+    queryWrapper.in(File::getUid, changeStringToString);
+    MybatisPlus Wrappers 怎么把 Object::getMethond -> 数据库字段的?
+
+    MybatisPlus中, 通过Wrappers查询. 如下代码中: queryWrapper.in(File::getUid, changeStringToString);
+    MybatisPlus 怎么把 File::getUid 转换为数据库的字段?
+
+    MybatisPlus 构造 where 条件, 例如:
+    ``` java
+    baseMapper.selectList(queryWrapper.in(File::getUid, changeStringToString));
+    ```
+    是怎么将Function<> 转为数据库字段的?
+
+    QueryWrapper<com.moxi.mogublog.commons.entity.File> queryWrapper = new QueryWrapper<>();
+    queryWrapper.in(File::getUid, changeStringToString);
+
+    Snipaste 贴图是什么意思?
+
+    这个方法的实现原理是什么?
+    com.baomidou.mybatisplus.core.mapper.BaseMapper#selectList(com.baomidou.mybatisplus.core.conditions.Wrapper<T>)
+
+> 2023年10月28日13:42:49
+
+1. 历史1:
+
+    MybatisPlus 查询中, 是如何把 Object::getMethod 转成 数据库字段的. Function<> => String
+
+    baseMapper.selectList(Wrappers.<ObjectEntity>lamtxxQuery().eq(
+
+    ));
+
+    baseMapper#selectList() 为什么能把 Wrapper => 转成SQL语句呢?
+
+    MybatisPlus中, 如下方法com.baomidou.mybatisplus.core.mapper.BaseMapper#selectList(com.baomidou.mybatisplus.core.conditions.Wrapper<T>)
+    是怎么把 Wrapper<T> 转成数据库可执行的SQL语句的? 请从MybatisPlus源码详细分析?
+
+    MybatisPlus 中com.baomidou.mybatisplus.core.mapper.BaseMapper的接口, 都没有实现类. 增删改查是怎么实现的呢?
+
+> 2023年11月27日21:38:27
+
+1. 历史1:
+
+    编程思想
+        - 抽象
+        - CAP
+        - BASE理论
+    设计模式
+        - 常见设计模式
+    Java基础
+        - 语言基础
+        - 反射
+        - 集合
+        - 泛型
+        - Stream流
+        - 并发JUC
+    JVM
+        - JVM调优
+        - 垃圾回收
+    开源框架
+        - Spring
+        - SpirngBoot SpringCloud
+        - Mybatis-Plus
+    中间件
+        - MySQL
+        - Redis
+        - Kafka
+    简单运维
+        - Docker
+        - Jekins
+        - 容器编排
+    开发工具
+        - IDEA
+        - WebStrom
+        - Xshell
+        - Navicat
+        - Git
+        - Maven
+    前端技术
+        - JavaScript
+        - HTML
+        - CSS
+        - Vue
+    操作系统
+        - Linux
+    其他编程语言
+        - Python
+        - Golang
+        - C++
