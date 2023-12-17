@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="false" scan="true" scanPeriod="3 seconds">
+    <!-- dev环境生效 -->
+    <springProfile name="dev">
+        <property name="LOG_HOME" value="./logs"/>
+    </springProfile>
+    <!-- 非dev环境生效 -->
+    <springProfile name="!dev">
+        <property name="LOG_HOME" value="${logging.path}"/>
+    </springProfile>
+    <!-- 外部公共配置 -->
+    <include resource="basic-logback.xml"></include>
+
+    <appender name="xxxxxService" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_HOME}/service.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <fileNamePattern>${LOG_HOME}/service/service.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${pattern}</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${pattern}</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="com.xxx.xxx" level="info" additivity="true">
+        <appender-ref ref="xxxxxService"></appender-ref>
+    </logger>
+
+    <springProfile name="dev">
+        <root>
+            <appender-ref ref="console"/>
+        </root>
+    </springProfile>
+</configuration>
