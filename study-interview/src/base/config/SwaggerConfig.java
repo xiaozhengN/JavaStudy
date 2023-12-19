@@ -2,7 +2,6 @@ package base.config;
 
 import org.springframework.boot.actuate.autoconfigure.endpoint.web.CorsEndpointProperties;
 import org.springframework.boot.actuate.autoconfigure.endpoint.web.WebEndpointProperties;
-import org.springframework.boot.actuate.autoconfigure.web.server.ManagementPortType;
 import org.springframework.boot.actuate.endpoint.ExposableEndpoint;
 import org.springframework.boot.actuate.endpoint.web.*;
 import org.springframework.boot.actuate.endpoint.web.annotation.ControllerEndpointsSupplier;
@@ -11,7 +10,6 @@ import org.springframework.boot.actuate.endpoint.web.servlet.WebMvcEndpointHandl
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
-import org.springframework.util.StringUtils;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -62,7 +60,9 @@ public class SwaggerConfig {
     }
 
     private boolean shouldRegisterLinkMapping(WebEndpointProperties webEndpointProperties, Environment environment, String basePath) {
-        return webEndpointProperties.getDiscovery().isEnable() && (StringUtils.hasText(basePath) || ManagementPortType.get(environment).equals(ManagementPortType.DIFFERENT));
+        // TODO 这里报错, 可能导包不对
+        return false;
+        // return webEndpointProperties.getDiscovery().isEnable() && (StringUtils.hasText(basePath) || ManagementPortType.get(environment).equals(ManagementPortType.DIFFERENT));
     }
 
     private ApiInfo getApiInfo() {
